@@ -5,7 +5,8 @@ const  dropTables = async () => {
         console.log('Dropping Tables...');
 
         await client.query(`
-            DROP TABLE IF EXISTS "purchaseHistory";
+            DROP TABLE IF EXISTS orders_games;
+            DROP TABLE IF EXISTS orders;
             DROP TABLE IF EXISTS games;
             DROP TABLE IF EXISTS users;
         `)
@@ -37,9 +38,14 @@ const createTables = async () => {
             genre VARCHAR(20) NOT NULL,
             description TEXT NOT NULL;
 
-            CREATE TABLE "purchaseHistory"
+            CREATE TABLE orders
             id SERIAL PRIMARY KEY,
             "userId" INTEGER REFERENES users(id),
+            isOPEN BOOLEAN NOT NULL;
+
+            CREATE TABLE orders_games
+            id SERIAL PRIMARY KEY,
+            "orderId" INTEGER REFERENES orders(id),
             "gameId" INTEGER REFERENCES games(id);
         `)
 
