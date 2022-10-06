@@ -16,4 +16,18 @@ const createGame = async ({ name, price, genre, description }) => {
     }
 };
 
+const getAllGames = async () => {
+    try {
+        const { rows } = await client.query(`
+            SELECT *
+            FROM games;
+        `)
+        
+        return rows;
+    } catch (error) {
+        console.error('Error getting games!')
+        throw error;
+    }
+};
+
 module.exports = { createGame };
