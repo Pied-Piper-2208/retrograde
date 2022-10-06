@@ -1,8 +1,10 @@
 const express = require('express');
+const router = express.Router();
+
+const gamesRouter = require('./games')
+router.use('/games', gamesRouter);
+
 const app = express();
-
-app.get('/', function (req, res) {
-  res.send('Hello World')
-});
-
 app.listen(4000);
+
+module.exports = router;
