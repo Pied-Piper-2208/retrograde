@@ -28,7 +28,7 @@ const createTables = async () => {
             username VARCHAR(50) NOT NULL,
             password VARCHAR(50) NOT NULL,
             "isAdmin" BOOLEAN NOT NULL,
-            "emailAddress" VARCHAR(59) NOT NULL,
+            "emailAddress" VARCHAR(50) NOT NULL,
             UNIQUE (username, "emailAddress");
 
             CREATE TABLE games
@@ -41,7 +41,7 @@ const createTables = async () => {
             CREATE TABLE orders
             id SERIAL PRIMARY KEY,
             "userId" INTEGER REFERENES users(id),
-            isOPEN BOOLEAN NOT NULL;
+            isOPEN BOOLEAN DEFAULT true;
 
             CREATE TABLE orders_games
             id SERIAL PRIMARY KEY,
