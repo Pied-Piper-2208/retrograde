@@ -1,4 +1,4 @@
-const client = require('./index');
+const client = require('./client');
 
 const createGame = async ({ name, price, genre, description }) => {
     try {
@@ -30,4 +30,4 @@ const getAllGames = async () => {
     }
 };
 
-module.exports = { createGame };
+module.exports = { createGame, getAllGames };
