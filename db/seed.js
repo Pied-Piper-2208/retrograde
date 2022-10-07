@@ -96,7 +96,6 @@ const createInitialGames = async () => {
 
 const rebuildDB = async () => {
     try {
-        client.connect();
 
         await dropTables();
         await createTables();
