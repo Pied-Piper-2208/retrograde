@@ -1,3 +1,1 @@
-import { getAllGames } from "./axios";
-
-export { getAllGames }
+export { getAllGames } from "./axios";
