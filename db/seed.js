@@ -45,7 +45,7 @@ const createTables = async () => {
             CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "userId" INTEGER REFERENCES users(id),
-            isOPEN BOOLEAN DEFAULT true
+            isOpen BOOLEAN DEFAULT true
             );
 
             CREATE TABLE orders_games (
@@ -97,10 +97,10 @@ const createInitialGames = async () => {
 const createInitialOrders = async () => {
     try {
         console.log('Creating initial orders...')
-        await createOrder({ userId: '1', isOPEN: false });
-        await createOrder({ userId: '2', isOPEN: true });
-        await createOrder({ userId: '3', isOPEN: false });
-        await createOrder({ userId: '4', isOPEN: true });
+        await createOrder({ userId: '1', isOpen: false });
+        await createOrder({ userId: '2', isOpen: true });
+        await createOrder({ userId: '3', isOpen: false });
+        await createOrder({ userId: '4', isOpen: true });
         console.log('Finished creating initial orders.')
     } catch (error) {
         console.error('Error creating initial orders!')

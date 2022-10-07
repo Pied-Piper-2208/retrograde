@@ -1,12 +1,12 @@
 const client = require('./client');
 
-const createOrder = async ({ userId, isOPEN }) => {
+const createOrder = async ({ userId, isOpen }) => {
     try {
         const { rows: [order] } = await client.query(`
-            INSERT INTO order(userId, isOPEN)
+            INSERT INTO order(userId, isOpen)
             VALUES($1, $2)
             RETURNING *;
-        `, [userId, isOPEN])
+        `, [userId, isOpen])
 
         return order;
     } catch (error) {
@@ -15,7 +15,6 @@ const createOrder = async ({ userId, isOPEN }) => {
     }
 };
 
-const client = require('./client');
 
 
 module.exports = { createOrder };
