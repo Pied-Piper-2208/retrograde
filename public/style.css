@@ -1,0 +1,22 @@
+#AllGames {
+    display: flex;
+    justify-content: center;
+}
+
+.Game {
+    margin: 20px;
+}
+
+.GamePhoto {
+    border: 2px solid black;
+    background-color: lightskyblue;
+    width: 1in;
+    height: 1.5in;
+    margin-bottom: 10px;
+}
+
+.GameQuickInfo {
+    width: 1in;
+    text-align: center;
+    font-size: small;
+}
