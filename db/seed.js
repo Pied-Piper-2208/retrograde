@@ -94,6 +94,21 @@ const createInitialGames = async () => {
     }
 };
 
+const createInitialOrders = async () => {
+    try {
+        console.log('Creating initial orders...')
+        await createOrder({ userId: '1', isOPEN: false });
+        await createOrder({ userId: '2', isOPEN: true });
+        await createOrder({ userId: '3', isOPEN: false });
+        await createOrder({ userId: '4', isOPEN: true });
+        console.log('Finished creating initial orders.')
+    } catch (error) {
+        console.error('Error creating initial orders!')
+        throw error;
+    }
+};
+
+
 const rebuildDB = async () => {
     try {
 
@@ -101,6 +116,8 @@ const rebuildDB = async () => {
         await createTables();
         await createInitialUsers();
         await createInitialGames();
+        await createInitialOrders();
+
 
         console.log('Finished building DB.')
     } catch (error) {
