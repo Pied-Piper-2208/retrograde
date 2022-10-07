@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
+const apiRouter = require ('express').Router();
 
 const gamesRouter = require('./games')
-router.use('/games', gamesRouter);
+apiRouter.use('/games', gamesRouter);
 
-const app = express();
-app.listen(4000);
+apiRouter.get('/', (req, res) => {
+    res.send('Hello World!')
+});
 
-module.exports = router;
+module.exports = apiRouter;
