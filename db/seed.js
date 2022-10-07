@@ -47,7 +47,7 @@ const createTables = async () => {
             CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "userId" INTEGER REFERENCES users(id),
-            isOpen BOOLEAN DEFAULT true
+            "isOpen" BOOLEAN DEFAULT true
             );
 
             CREATE TABLE orders_games (
