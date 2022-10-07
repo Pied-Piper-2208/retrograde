@@ -3,7 +3,7 @@ const client = require('./client');
 const createOrder = async ({ userId, isOpen }) => {
     try {
         const { rows: [order] } = await client.query(`
-            INSERT INTO order(userId, isOpen)
+            INSERT INTO orders("userId", isOpen)
             VALUES($1, $2)
             RETURNING *;
         `, [userId, isOpen])
