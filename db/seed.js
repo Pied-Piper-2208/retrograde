@@ -1,6 +1,8 @@
 const client = require('./client');
 const { createUser } = require('./users');
 const { createGame } = require('./games');
+const { createOrder } = require('./orders')
+const { createOrders_Games } = require('./orders_games');
 
 const  dropTables = async () => {
     try {
@@ -45,7 +47,7 @@ const createTables = async () => {
             CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "userId" INTEGER REFERENCES users(id),
-            isOpen BOOLEAN DEFAULT true
+            "isOpen" BOOLEAN DEFAULT true
             );
 
             CREATE TABLE orders_games (
@@ -108,6 +110,19 @@ const createInitialOrders = async () => {
     }
 };
 
+const createInitialGameOrders = async () => {
+    try {
+        console.log("Creating intial orders_games...")
+        await createOrders_Games({orderId: 1, gameId: 4})
+        await createOrders_Games({orderId: 2, gameId: 3})
+        await createOrders_Games({orderId: 3, gameId: 2})
+        await createOrders_Games({orderId: 4, gameId: 1})
+        console.log("Finished intial orders_games.")
+    } catch (error) {
+        console.error("Error creating Initial orders_games!")
+        throw error
+    }
+}
 
 const rebuildDB = async () => {
     try {
@@ -117,6 +132,7 @@ const rebuildDB = async () => {
         await createInitialUsers();
         await createInitialGames();
         await createInitialOrders();
+        await createInitialGameOrders();
 
 
         console.log('Finished building DB.')
