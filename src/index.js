@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Home } from './components';
 
 const App = () => {
-    return <h1>Hello React World!</h1>
+    return (
+        <Home />
+    )
 };
 
 const root = createRoot(document.getElementById('root'));
