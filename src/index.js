@@ -1,10 +1,17 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { Home } from './components';
+import { Home, Details } from './components';
 
 const App = () => {
     return (
-        <Home />
+        <Router>
+            <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/:id" element={<Details />}></Route>
+            </Routes>
+        </Router>
+        
     )
 };
 

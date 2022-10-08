@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllGames } from "./axios";
+import { Link } from "react-router-dom";
+
+
 
 export const Home = () => {
     const [allGames, setAllGames] = useState([])
@@ -19,6 +22,7 @@ export const Home = () => {
                             <div className="GameQuickInfo">
                                 <div className="GameName">{game.name}</div>
                                 <div className="GamePrice">${game.price}</div>
+                                <Link to={`/${game.id}`}>More info</Link>
                             </div>
                         </div>
                     )
