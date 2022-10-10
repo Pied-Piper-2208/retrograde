@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { getUserByUsername, createUser, getUserById} = require('../db');
+const { getUserByUsername, createUser, getUserById, getAllUsers} = require('../db');
 
 
 
@@ -84,4 +84,13 @@ router.post('/register', async (req, res, next) => {
     }
   });
   
+router.get('/', async (req, res) => {
+    try {
+      const allUsers = await getAllUsers()
+      res.send(allUsers)
+    } catch (error) {
+      throw error
+    }
+})
+
   module.exports = router;

@@ -20,3 +20,8 @@ export const deleteGame = async (id) => {
     const response = await axios.delete(`${BASE_URL}/games/${id}`)
     return response.data
 }
+
+export const getAllUsers = async () => {
+    const response = await axios.get(`${BASE_URL}/users`)
+    return response.data
+}
