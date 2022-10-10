@@ -30,4 +30,18 @@ const getAllGames = async () => {
     }
 };
 
-module.exports = { createGame, getAllGames };
+const getGameById = async (id) => {
+    try {
+        const { rows: [game] } = await client.query(`
+            SELECT *
+            FROM games
+            WHERE id = $1;
+        `,[id])
+        return game
+    } catch (error) {
+        console.error('Error getting game!')
+        throw error;
+    }
+}
+
+module.exports = { createGame, getAllGames, getGameById };

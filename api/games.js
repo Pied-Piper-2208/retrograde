@@ -1,5 +1,5 @@
 const gamesRouter = require('express').Router();
-const { getAllGames } = require('../db');
+const { getAllGames, getGameById } = require('../db');
 
 gamesRouter.get('/', async (req, res) => {
     try {
@@ -12,5 +12,16 @@ gamesRouter.get('/', async (req, res) => {
         throw error;
     }
 });
+
+gamesRouter.get('/:id', async (req, res) => {
+    const { id } = req.params
+    try {
+        const game = await getGameById(id)
+        res.send(game)
+    } catch (error) {
+        console.error('Error getting game!')
+        throw error;
+    }
+})
 
 module.exports = gamesRouter;
