@@ -47,3 +47,8 @@
     background-color: #04AA6D;
     color: white;
   }
+
+  .cart_remove_button {
+    display: block;
+    margin: 10px 0 10px 0;
+  }
