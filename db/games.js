@@ -16,6 +16,34 @@ const createGame = async ({ name, price, genre, description }) => {
     }
 };
 
+const removeGame = async (id) => {
+    try {
+        const { rows: [game] } = await client.query(`
+            DELETE FROM games
+            WHERE id = $1
+            RETURNING *;
+        `)
+        return game
+    } catch (error) {
+        console.error('Error removing game!')
+        throw error;
+    }
+}
+
+const editGame = async ({id, ...params}) => {
+    try {
+        const { rows: [game] } = await client.query(`
+            DELETE FROM games
+            WHERE id = $1
+            RETURNING *;
+        `)
+        return game
+    } catch (error) {
+        console.error('Error removing game!')
+        throw error;
+    }
+}
+
 const getAllGames = async () => {
     try {
         const { rows } = await client.query(`
