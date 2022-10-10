@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { Home, Cart } from './components';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home, Details, Cart } from './components';
 import Register from "./RegisterPage"
 import Login from "./LoginPage"
 
@@ -19,12 +19,12 @@ const App = () => {
               <Route path="/" element={<Home/>}></Route>
               <Route path="/register" element={<Register/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
+              <Route path="/:id" element={<Details />}></Route>
               <Route path="/cart" element={<Cart/>}></Route>
             </Routes>
           </div>
         </div>
     )
 };
-
 const root = createRoot(document.getElementById('root'));
 root.render(<Router><App /></Router>);
