@@ -18,11 +18,17 @@ const createGame = async ({ name, price, genre, description }) => {
 
 const removeGame = async (id) => {
     try {
+        await client.query(`
+            DELETE FROM orders_games
+            WHERE "gameId" = $1;
+        `,[id])
+
         const { rows: [game] } = await client.query(`
             DELETE FROM games
             WHERE id = $1
             RETURNING *;
-        `)
+        `,[id])
+
         return game
     } catch (error) {
         console.error('Error removing game!')
@@ -30,13 +36,18 @@ const removeGame = async (id) => {
     }
 }
 
-const editGame = async ({id, ...params}) => {
+const editGame = async ({id, name, price, genre, description}) => {
     try {
         const { rows: [game] } = await client.query(`
-            DELETE FROM games
+            UPDATE games SET
+                name = COALESCE($2, name),
+                price = COALESCE($3, price),
+                genre = COALESCE($4, genre),
+                description = COALESCE($5, description)
             WHERE id = $1
             RETURNING *;
-        `)
+        `,[id, name, price, genre, description])
+        
         return game
     } catch (error) {
         console.error('Error removing game!')
@@ -72,4 +83,4 @@ const getGameById = async (id) => {
     }
 }
 
-module.exports = { createGame, getAllGames, getGameById };
+module.exports = { createGame, getAllGames, getGameById, removeGame, editGame };
