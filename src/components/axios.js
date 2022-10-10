@@ -15,3 +15,8 @@ export const editGame = async ({id, ...params}) => {
     const response = await axios.patch(`${BASE_URL}/games/${id}`, params)
     return response.data
 }
+
+export const deleteGame = async (id) => {
+    const response = await axios.delete(`${BASE_URL}/games/${id}`)
+    return response.data
+}
