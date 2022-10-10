@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -7,7 +6,12 @@ import { Link } from "react-router-dom";
 
 export const Details = () => {
     const {id} = useParams();
-    const [game, setGame] = useState([])
+    const [game, setGame] = useState([]);
+    const [cart, setCart] = useState([]);
+    const handleClick = () => {
+        setCart([...cart, game]);
+        alert(`Added ${game.name} to you cart!`)
+    } 
     useEffect(()=>{
         getGameById(id)
         .then(results=>setGame(results))
@@ -15,13 +19,15 @@ export const Details = () => {
     return(
         <div id="HomePage">
             <div className="Game" key={game.id}>
-                            <div className="GamePhoto"></div>
-                            <div className="GameQuickInfo">
-                                <div className="GameName">{game.name}</div>
-                                <div className="GamePrice">${game.price}</div>
-                                <Link to ='/'>Back to Home</Link>
-                            </div>
-                        </div>
+                <div className="GamePhoto"></div>
+                <div className="GameQuickInfo"></div>
+                <div className="GameName">{game.name}</div>
+                <div className="GamePrice">${game.price}</div>
+                <div className="GameDescription">{game.description}</div>
+                <Link to ='/'>Back to Home</Link>
+                <br></br>
+                <button onClick={handleClick} >Add to Cart</button>
+            </div>
         </div>
     )
 }
