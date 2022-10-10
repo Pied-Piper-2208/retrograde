@@ -1,5 +1,5 @@
 const gamesRouter = require('express').Router();
-const { getAllGames, getGameById } = require('../db');
+const { getAllGames, getGameById, editGame } = require('../db');
 
 gamesRouter.get('/', async (req, res) => {
     try {
@@ -20,6 +20,18 @@ gamesRouter.get('/:id', async (req, res) => {
         res.send(game)
     } catch (error) {
         console.error('Error getting game!')
+        throw error;
+    }
+})
+
+gamesRouter.patch('/:id', async (req, res) => {
+    const { id } = req.params
+    const params = req.body
+    try {
+        const game = await editGame({id,...params})
+        res.send(game)
+    } catch (error) {
+        console.error('Error editing game!')
         throw error;
     }
 })
