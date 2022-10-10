@@ -44,4 +44,4 @@ const getGameById = async (id) => {
     }
 }
 
-module.exports = { createGame, getAllGames };
+module.exports = { createGame, getAllGames, getGameById };
