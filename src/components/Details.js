@@ -1,35 +1,28 @@
+
+import React from "react";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAllGames } from "./axios";
+import { getGameById } from "./axios";
 import { Link } from "react-router-dom";
 
-
-
-export const Home = () => {
-    const [allGames, setAllGames] = useState([])
-
+export const Details = () => {
+    const {id} = useParams();
+    const [game, setGame] = useState([])
     useEffect(()=>{
-        getAllGames()
-        .then(results=>setAllGames(results))
+        getGameById(id)
+        .then(results=>setGame(results))
     },[])
-
     return(
         <div id="HomePage">
-            <div id="AllGames">
-                {allGames.map(game=>{
-                    return (
-                        <div className="Game" key={game.id}>
+            <div className="Game" key={game.id}>
                             <div className="GamePhoto"></div>
                             <div className="GameQuickInfo">
                                 <div className="GameName">{game.name}</div>
                                 <div className="GamePrice">${game.price}</div>
-                                <Link to={`/${game.id}`}>More info</Link>
+                                <Link to ='/'>Back to Home</Link>
                             </div>
                         </div>
-                    )
-                })}
-            </div>
         </div>
     )
 }
-
-export default Home;
+export default Details

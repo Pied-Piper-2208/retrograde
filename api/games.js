@@ -4,6 +4,7 @@ const { getAllGames, getGameById } = require('../db');
 gamesRouter.get('/', async (req, res) => {
     try {
         const allGames = await getAllGames();
+        console.log("getallgames", allGames)
 
         res.send(allGames);
     } catch (error) {
