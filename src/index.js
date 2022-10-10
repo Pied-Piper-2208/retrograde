@@ -6,6 +6,8 @@ import Register from "./RegisterPage"
 import Login from "./LoginPage"
 
 const App = () => {
+  const [cart, setCart] = useState([]);
+
     return (
         <div>
           <div className="topnav">
@@ -20,7 +22,7 @@ const App = () => {
               <Route path="/register" element={<Register/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
               <Route path="/:id" element={<Details />}></Route>
-              <Route path="/cart" element={<Cart/>}></Route>
+              <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>}></Route>
             </Routes>
           </div>
         </div>
