@@ -11,6 +11,11 @@ export const getGameById = async (id) => {
     return response.data
 }
 
+export const createGame = async (params) => {
+    const response = await axios.post(`${BASE_URL}/games`, params)
+    return response.data
+}
+
 export const editGame = async ({id, ...params}) => {
     const response = await axios.patch(`${BASE_URL}/games/${id}`, params)
     return response.data

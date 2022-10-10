@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { Home, Details, Cart } from './components';
+import { Home, Details, Cart, AdminPage } from './components';
 import Register from "./RegisterPage"
 import Login from "./LoginPage"
 
@@ -11,13 +11,15 @@ const App = () => {
     return (
         <div>
           <div className="topnav">
-            <a href="/">Home</a>
-            <a href="/cart">My Cart</a>
-            <a href="/register">Register</a>
-            <a href="/login">Login</a>
+            <Link to="/">Home</Link>
+            <Link to="/admin">Admin Page</Link>
+            <Link to="/cart">My Cart</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link>
           </div>
           <div>
             <Routes>
+              <Route path='/admin' element={<AdminPage />}/>
               <Route path="/" element={<Home/>}></Route>
               <Route path="/register" element={<Register/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
