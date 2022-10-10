@@ -1,6 +1,6 @@
 const client = require('./client');
 
-export const createOrders_Games = async ({ orderId, gameId }) => {
+const createOrders_Games = async ({ orderId, gameId }) => {
     try {
         const { rows: [ordersGamesEntry] } = await client.query(`
             INSERT INTO orders_games("orderId", "gameId")
@@ -14,3 +14,5 @@ export const createOrders_Games = async ({ orderId, gameId }) => {
         throw error;
     }
 };
+
+module.exports = { createOrders_Games }

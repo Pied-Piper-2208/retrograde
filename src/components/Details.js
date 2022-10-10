@@ -19,7 +19,6 @@ export const Details = () => {
         <div id="HomePage">
             <div id="AllGames">
                 {game.map(game=>{
-                    (id === game.id) 
                     return (
                         <div className="Game" key={game.id}>
                             <div className="GamePhoto"></div>
