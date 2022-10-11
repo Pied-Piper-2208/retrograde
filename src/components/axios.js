@@ -30,3 +30,8 @@ export const getAllUsers = async () => {
     const response = await axios.get(`${BASE_URL}/users`)
     return response.data
 }
+
+export const getOrderById = async () => {
+    const response = await axios.get(`${BASE_URL}/:userId`)
+    return response.data
+}
