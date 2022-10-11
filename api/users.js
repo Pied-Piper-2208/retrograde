@@ -34,14 +34,17 @@ router.post('/login', async (req, res, next) => {
     try {
         
         const hashedPassword = user.password;
+        console.log('hashed', hashedPassword);
+        console.log('raw', password);
         const isValid = await bcrypt.compare(password, hashedPassword);
-
+        console.log('isValid', isValid);
         if (user && isValid) {
           // create token & return to user
           const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET);
           req.user = user;
           res.send({ success: true, user: user, message: "you're logged in!", token: token });
         } else {
+          console.log('Wrong credentials');
           next({ 
             name: 'IncorrectCredentialsError', 
             message: 'Username or password is incorrect'
@@ -52,6 +55,7 @@ router.post('/login', async (req, res, next) => {
         next(error);
       }
     } else {
+      console.log('No user found');
       next({ 
         name: 'NoSuchUserError', 
         message: 'There is no user by that name. Please register'

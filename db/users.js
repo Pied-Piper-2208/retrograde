@@ -5,12 +5,15 @@ const bcrypt = require('bcrypt');
 const createUser = async ({ username, password, emailAddress, isAdmin }) => {
     try {
         console.log('emailAddress', emailAddress);
+        const SALT_COUNT = 10;
+
+        const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
         const { rows: [user] } = await client.query(`
             INSERT INTO users(username, password, "emailAddress", "isAdmin")
             VALUES($1, $2, $3, $4)
             ON CONFLICT (username, "emailAddress") DO NOTHING
             RETURNING *;
-        `, [username, password, emailAddress, isAdmin])
+        `, [username, hashedPassword, emailAddress, isAdmin])
 
         return user;
     } catch (error) {
