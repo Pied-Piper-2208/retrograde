@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Cart = ({ cart, setCart }) => {
 
     const [quantity, setQuantity] = useState(1);
     const [total, setTotal] = useState(0);
+
+    useEffect(()=>{
+        const prices = document.getElementsByClassName('cart_price');
+        console.log([...prices][0].innerHTML)
+    }, []);
 
     const handleQuantity = (event) => {
         event.preventDefault();
