@@ -15,6 +15,24 @@ const createOrder = async ({ userId, isOpen }) => {
     }
 };
 
+const getCartByUserId = async (userId) => {
+    try {
+        const { rows } = await client.query(`
+            SELECT games.id AS id, name, price, "orderId"
+            FROM games
+            JOIN orders_games
+            ON games.id = orders_games."gameId"
+            JOIN orders
+            ON orders_games."orderId" = orders.id
+            WHERE orders."userId" = $1
+            AND orders."isOpen" = true;
+        `,[userId])
+        return rows
+    } catch (error) {
+        console.error('Error getting cart!')
+        throw error;
+    }
+}
 
 
-module.exports = { createOrder };
+module.exports = { createOrder, getCartByUserId };
