@@ -72,7 +72,7 @@ export const AdminPage = () => {
                     <label>Genre: </label>
                     <input defaultValue={game.genre} maxLength="20" required /><br/><br/>
                     <label>Description: </label>
-                    <input defaultValue={game.description} required /><br/><br/>
+                    <textarea rows="4" cols="30" defaultValue={game.description} required /><br/><br/>
                     <input type="submit" value="Update"/>
                 </form>
             </div>
@@ -116,7 +116,7 @@ export const AdminPage = () => {
                     <label>Genre: </label>
                     <input maxLength="20" required /><br/><br/>
                     <label>Description: </label>
-                    <input required /><br/><br/>
+                    <textarea rows="4" cols="30" required /><br/><br/>
                     <input type="submit" value="Create Game!"/>
                 </form>
             </div>
