@@ -34,5 +34,20 @@ const getCartByUserId = async (userId) => {
     }
 }
 
+const orderIsOpenFalse = async (orderId) => {
+    try {
+        const { rows: [order] } = await client.query(`
+            UPDATE orders
+            SET "isOpen" = false
+            WHERE id = $1
+            RETURNING *;
+        `,[orderId])
+        return order
+    } catch (error) {
+        console.error('Error closing order!')
+        throw error;
+    }
+}
 
-module.exports = { createOrder, getCartByUserId };
+
+module.exports = { createOrder, getCartByUserId, orderIsOpenFalse };
