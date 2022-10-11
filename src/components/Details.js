@@ -6,11 +6,21 @@ import { Link } from "react-router-dom";
 
 export const Details = ({cart, setCart}) => {
     const {id} = useParams();
-    const [game, setGame] = useState([]);
+    const [game, setGame] = useState({});
 
     const handleClick = () => {
-        setCart([...cart, game]);
-        alert(`Added ${game.name} to your cart!`)
+        let inCart = false
+        for(let gameObj of cart)
+            if(gameObj.id===game.id)
+                inCart = true
+
+        if (!inCart) {
+            game.quantity = 1
+            setCart([...cart, game]);
+            alert(`Added ${game.name} to your cart!`)
+        }
+        else
+            alert("Item is already in your cart!")
     } 
 
     useEffect(()=>{
