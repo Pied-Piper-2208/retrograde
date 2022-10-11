@@ -6,9 +6,17 @@ export const Cart = ({ cart, setCart }) => {
     const [total, setTotal] = useState(0);
 
     useEffect(()=>{
+        let total = 0
         const prices = document.getElementsByClassName('cart_price');
-        console.log([...prices][0].innerHTML)
-    }, []);
+        for (let x = 0; x < prices.length; x++ ) {
+            if ([...prices][x] === undefined) {
+                return;
+            } else {
+            total += Number([...prices][x].innerHTML.slice(1));
+            }
+        }
+        setTotal(total);
+    }, [quantity]);
 
     const handleQuantity = (event) => {
         event.preventDefault();
@@ -21,7 +29,7 @@ export const Cart = ({ cart, setCart }) => {
         <h1>Your Cart:</h1>
         {cart.map(item => {
             return (
-                <div key={item.id}>
+                <div key={item.id} id={item.id}>
                     <h3 className="cart_name">{item.name}</h3>
                     <div className="cart_price">${item.price*quantity}</div>
                     <span>Quantity:</span> <input onChange={event => handleQuantity(event)} type='number' id="quantity" min="1"></input>
@@ -29,7 +37,7 @@ export const Cart = ({ cart, setCart }) => {
                 </div>
             )
         })}
-        <h3>Total: {total}</h3>
+        <h3>Total: ${total}</h3>
         <button>Proceed to Checkout</button>
         </>
     )
