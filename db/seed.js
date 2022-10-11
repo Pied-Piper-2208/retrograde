@@ -102,6 +102,10 @@ const createInitialOrders = async () => {
         await createOrder({ userId: '2', isOpen: true });
         await createOrder({ userId: '3', isOpen: false });
         await createOrder({ userId: '4', isOpen: true });
+        await createOrder({ userId: '1', isOpen: true });
+        await createOrder({ userId: '2', isOpen: true });
+        await createOrder({ userId: '3', isOpen: true });
+        await createOrder({ userId: '4', isOpen: true });
         console.log('Finished creating initial orders.')
     } catch (error) {
         console.error('Error creating initial orders!')
@@ -116,6 +120,10 @@ const createInitialGameOrders = async () => {
         await createOrders_Games({orderId: 2, gameId: 3})
         await createOrders_Games({orderId: 3, gameId: 2})
         await createOrders_Games({orderId: 4, gameId: 1})
+        await createOrders_Games({orderId: 5, gameId: 1})
+        await createOrders_Games({orderId: 6, gameId: 2})
+        await createOrders_Games({orderId: 7, gameId: 3})
+        await createOrders_Games({orderId: 8, gameId: 4})
         console.log("Finished intial orders_games.")
     } catch (error) {
         console.error("Error creating Initial orders_games!")
