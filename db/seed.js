@@ -32,8 +32,7 @@ const createTables = async () => {
             username VARCHAR(50) NOT NULL,
             password VARCHAR(50) NOT NULL,
             "isAdmin" BOOLEAN DEFAULT false,
-            "emailAddress" VARCHAR(50) NOT NULL,
-            UNIQUE (username, "emailAddress")
+            "emailAddress" VARCHAR(50) UNIQUE NOT NULL
             );
 
             CREATE TABLE games (
