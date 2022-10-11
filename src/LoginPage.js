@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { storeCurrentUser, storeCurrentToken, clearCurrentToken, getCurrentToken, clearCurrentUser } from './auth';
+import { storeCurrentUser, storeCurrentToken, clearCurrentToken, getCurrentToken, clearCurrentUser } from './auth';
 
 
 const Login = (props) => {
 
+  console.log('props', props);
   const currentUser = props.currentUser;
   const setCurrentUser = props.setCurrentUser;
   const token = props.token;
@@ -53,11 +54,11 @@ const Login = (props) => {
     } else {
         //bError = false;
         alert(data.message);
-        setToken(data.token);
-        setCurrentUser(data.user.username);
+        // setToken(data.token);
+        // setCurrentUser(data.user.username);
         storeCurrentUser(data.user);
         storeCurrentToken(data.token);
-        navigate('/loggedInDashboard');  
+        // navigate('/loggedInDashboard');  
      }
 }
 
