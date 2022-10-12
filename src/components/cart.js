@@ -6,9 +6,8 @@ export const Cart = ({ cart, setCart }) => {
 
     useEffect(()=>{
         let total = 0
-        const prices = cart.map(game=>game.price*game.quantity);
-        for (let price of prices)
-            total+=price
+        for (let {price, quantity} of cart)
+            total+=price*quantity
         setTotal(total);
     }, [cart]);
 
@@ -20,21 +19,27 @@ export const Cart = ({ cart, setCart }) => {
         }))
     }
 
+    const handleDelete = (gameid) => {
+        setCart(cart.filter(({id})=>id!==gameid))
+    }
+
     return (
         <>
-        <h1>Your Cart:</h1>
-        {cart.map(item => {
-            return (
-                <div key={item.id}>
-                    <h3>{item.name}</h3>
-                    <div>${item.price*item.quantity}</div>
-                    <span>Quantity:</span> <input onChange={event => handleQuantity(event, item.id)} type='number' min="1" defaultValue={item.quantity}></input>
-                    <button>Remove</button>
-                </div>
-            )
-        })}
-        <h3>Total: ${total}</h3>
-        <button>Proceed to Checkout</button>
+            {total?<>
+                <h1>Your Cart:</h1>
+                {cart.map(({id, name, price, quantity}) => {
+                    return (
+                        <div key={id}>
+                            <h3>{name}</h3>
+                            <div>${price*quantity}</div>
+                            <span>Quantity:</span> <input onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
+                            <button onClick={()=>handleDelete(id)}>Remove</button>
+                        </div>
+                    )
+                })}
+                <h3>Total: ${total}</h3>
+                <button>Proceed to Checkout</button>
+            </>:<h1>Your Cart Is Empty!</h1>}
         </>
     )
 };
