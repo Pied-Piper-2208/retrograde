@@ -34,6 +34,20 @@ const getCartByUserId = async (userId) => {
     }
 }
 
+const deleteGameFromCart = async (orderId) => {
+    try {
+        await client.query(`
+        DELETE FROM orders_games 
+        WHERE "orderId" = ${orderId};
+        DELETE FROM orders 
+        WHERE id = ${orderId};
+        `)
+    } catch (error) {
+        console.error('Error deleting game from cart!')
+        throw error;
+    }
+}
+
 const orderIsOpenFalse = async (orderId) => {
     try {
         const { rows: [order] } = await client.query(`
@@ -50,4 +64,6 @@ const orderIsOpenFalse = async (orderId) => {
 }
 
 
-module.exports = { createOrder, getCartByUserId, orderIsOpenFalse };
+
+
+module.exports = { createOrder, getCartByUserId, orderIsOpenFalse, deleteGameFromCart };
