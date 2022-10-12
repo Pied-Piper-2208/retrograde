@@ -15,6 +15,14 @@
     margin-bottom: 10px;
 }
 
+.GameDetailsImage {
+  border: 2px solid black;
+  width: 40%;
+  height: 40%;
+  float: left;
+  margin-right: 15px;
+}
+
 .GameQuickInfo {
     width: 1in;
     text-align: center;
@@ -46,6 +54,10 @@
   .topnav a.active {
     background-color: #04AA6D;
     color: white;
+  }
+
+  .CartItem {
+    margin-top: 15px;
   }
 
   .cart_remove_button {

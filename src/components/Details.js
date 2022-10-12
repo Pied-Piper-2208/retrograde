@@ -31,7 +31,7 @@ export const Details = ({cart, setCart}) => {
     return(
         <div id="HomePage">
             <div className="Game" key={game.id}>
-                <div className="GamePhoto"></div>
+                <img className="GameDetailsImage" src={game.image} alt={game.name}/>
                 <div className="GameQuickInfo"></div>
                 <div className="GameName">{game.name}</div>
                 <div className="GamePrice">${game.price}</div>

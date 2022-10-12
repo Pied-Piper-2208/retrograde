@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { getAllGames } from "./axios";
 import { Link } from "react-router-dom";
 
-
-
 export const Home = () => {
     const [allGames, setAllGames] = useState([])
 
@@ -18,7 +16,7 @@ export const Home = () => {
                 {allGames.map(game=>{
                     return (
                         <div className="Game" key={game.id}>
-                            <div className="GamePhoto"></div>
+                            <img className="GamePhoto" src={game.image} alt={game.name}/>
                             <div className="GameQuickInfo">
                                 <div className="GameName">{game.name}</div>
                                 <div className="GamePrice">${game.price}</div>
