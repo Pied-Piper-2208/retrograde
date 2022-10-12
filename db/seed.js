@@ -40,7 +40,7 @@ const createTables = async () => {
             name VARCHAR(50) UNIQUE NOT NULL,
             price INTEGER NOT NULL,
             genre VARCHAR(20) NOT NULL,
-            image VARCHAR(50) NOT NULL,
+            image VARCHAR(50) UNIQUE NOT NULL,
             description TEXT NOT NULL
             );
 
@@ -84,10 +84,10 @@ const createInitialGames = async () => {
     try {
         console.log('Creating initial games...');
 
-        await createGame({ name: 'Oregon Trail', price: 20.00, genre: 'Educational', image: '../assets/The Oregon Trail', description: "Originally designed to teach 8th grade schoolchildren about the realities of 19th-century pioneer life on the Oregon Trail. The player assumes the role of a wagon leader guiding a party of settlers from Independence, Missouri, to Oregon's Willamette Valley via a covered wagon in 1848." });
-        await createGame({ name: 'Starcraft', price: 50.00, genre: 'Strategy', image: '../assets/Starcraft', description: "Set in a fictitious future timeline during the 25th century AD in a distant part of the Milky Way galaxy known as the Koprulu Sector, the game revolves around three intelligent species fighting for dominance: the Terrans are humans exiled from Earth who are now skilled at adapting to any situation; the Zerg are a race of insectoid aliens in pursuit of genetic perfection and obsessed with assimilating other races; the Protoss are a humanoid species with advanced technology and psionic abilities who are attempting to preserve their civilization and strict philosophy about their way of life from the Zerg." });
-        await createGame({ name: 'The Secret of Monkey Island', price: 30.00, genre: 'Puzzle', image: '../assets/The Secret of Monkey Island', description: "The Secret of Monkey Island is a 2D adventure game played from a third-person perspective. Via a point-and-click interface, the player guides protagonist Guybrush Threepwood through the game's world." });
-        await createGame({ name: 'Bloons Tower Defense 3', price: 40.00, genre: 'Strategy', image: '../assets/Bloons Tower Defense 3', description: "The main objective of Bloons TD is to prevent Bloons (in-game name for balloons) from reaching the end of a defined track on a map which consists of one or more entrances and exits for the bloons." });
+        await createGame({ name: 'Oregon Trail', price: 20.00, genre: 'Educational', image: '/assets/The Oregon Trail.jpeg', description: "Originally designed to teach 8th grade schoolchildren about the realities of 19th-century pioneer life on the Oregon Trail. The player assumes the role of a wagon leader guiding a party of settlers from Independence, Missouri, to Oregon's Willamette Valley via a covered wagon in 1848." });
+        await createGame({ name: 'Starcraft', price: 50.00, genre: 'Strategy', image: '/assets/Starcraft.jpeg', description: "Set in a fictitious future timeline during the 25th century AD in a distant part of the Milky Way galaxy known as the Koprulu Sector, the game revolves around three intelligent species fighting for dominance: the Terrans are humans exiled from Earth who are now skilled at adapting to any situation; the Zerg are a race of insectoid aliens in pursuit of genetic perfection and obsessed with assimilating other races; the Protoss are a humanoid species with advanced technology and psionic abilities who are attempting to preserve their civilization and strict philosophy about their way of life from the Zerg." });
+        await createGame({ name: 'The Secret of Monkey Island', price: 30.00, genre: 'Puzzle', image: '/assets/The Secret of Monkey Island.jpeg', description: "The Secret of Monkey Island is a 2D adventure game played from a third-person perspective. Via a point-and-click interface, the player guides protagonist Guybrush Threepwood through the game's world." });
+        await createGame({ name: 'Bloons Tower Defense 3', price: 40.00, genre: 'Strategy', image: '/assets/Bloons Tower Defense 3.webp', description: "The main objective of Bloons TD is to prevent Bloons (in-game name for balloons) from reaching the end of a defined track on a map which consists of one or more entrances and exits for the bloons." });
 
         console.log('Finished creating initial games.')
     } catch (error) {
