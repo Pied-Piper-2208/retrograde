@@ -15,6 +15,7 @@ export const Home = () => {
     return(
         <div id="HomePage">
             <div id="AllGames">
+                <img src="../../assets/The Oregon Trail.jpeg"></img>
                 {allGames.map(game=>{
                     return (
                         <div className="Game" key={game.id}>
