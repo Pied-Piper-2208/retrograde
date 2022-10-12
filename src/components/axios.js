@@ -35,3 +35,8 @@ export const getOrderById = async () => {
     const response = await axios.get(`${BASE_URL}/:userId`)
     return response.data
 }
+
+export const deleteFromCart = async (orderId) => {
+    const response = await axios.delete(`${BASE_URL}/orders/${orderId}`)
+    return response.data
+}
