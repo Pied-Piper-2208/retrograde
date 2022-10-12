@@ -14,7 +14,7 @@ const Checkout = ({ cart, setCart }) => {
                 <li>Shipping and handling: $0.00</li>
                 <li>Total before taxes: </li>
                 <li>Estimated taxes: </li>
-                <li>Order total: </li>
+                <li>Order total:1 </li>
             </ul>
 
 
