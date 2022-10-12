@@ -27,9 +27,10 @@ export const Cart = ({ cart, setCart }) => {
         <>
             {total?<>
                 <h1>Your Cart:</h1>
-                {cart.map(({id, name, price, quantity}) => {
+                {cart.map(({id, name, price, image, quantity}) => {
                     return (
-                        <div key={id}>
+                        <div className='CartItem' key={id}>
+                            <img className="GamePhoto" src={image} alt={name}/>
                             <h3>{name}</h3>
                             <div>${price*quantity}</div>
                             <span>Quantity:</span> <input onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
