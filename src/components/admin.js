@@ -57,7 +57,8 @@ export const AdminPage = () => {
                 name: event.target[0].value,
                 price: event.target[1].value,
                 genre: event.target[2].value,
-                description: event.target[3].value
+                image: event.target[3].value,
+                description: event.target[4].value
             }
             setUpdatedGame(editGame({id: game.id, ...params}))
             postAndOptions()
@@ -72,6 +73,8 @@ export const AdminPage = () => {
                     <input type="number" defaultValue={game.price} max="200" required /><br/><br/>
                     <label>Genre: </label>
                     <input defaultValue={game.genre} maxLength="20" required /><br/><br/>
+                    <label>Image URL: </label>
+                    <input defaultValue={game.image} maxLength="200" required /><br/><br/>
                     <label>Description: </label>
                     <textarea rows="4" cols="30" defaultValue={game.description} required /><br/><br/>
                     <input type="submit" value="Update"/>
@@ -100,7 +103,8 @@ export const AdminPage = () => {
                 name: event.target[0].value,
                 price: event.target[1].value,
                 genre: event.target[2].value,
-                description: event.target[3].value
+                image: event.target[3].value,
+                description: event.target[4].value
             }
             setUpdatedGame(createGame(params))
             setIsCreatingGame(false)
@@ -116,6 +120,8 @@ export const AdminPage = () => {
                     <input type="number" max="200" required /><br/><br/>
                     <label>Genre: </label>
                     <input maxLength="20" required /><br/><br/>
+                    <label>Image URL: </label>
+                    <input maxLength="200" required /><br/><br/>
                     <label>Description: </label>
                     <textarea rows="4" cols="30" required /><br/><br/>
                     <input type="submit" value="Create Game!"/>

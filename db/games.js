@@ -36,17 +36,18 @@ const removeGame = async (id) => {
     }
 }
 
-const editGame = async ({id, name, price, genre, description}) => {
+const editGame = async ({id, name, price, genre, image, description}) => {
     try {
         const { rows: [game] } = await client.query(`
             UPDATE games SET
                 name = COALESCE($2, name),
                 price = COALESCE($3, price),
                 genre = COALESCE($4, genre),
-                description = COALESCE($5, description)
+                image = COALESCE($5, image),
+                description = COALESCE($6, description)
             WHERE id = $1
             RETURNING *;
-        `,[id, name, price, genre, description])
+        `,[id, name, price, genre, image, description])
         
         return game
     } catch (error) {
