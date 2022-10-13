@@ -18,7 +18,7 @@ const createOrder = async ({ userId, isOpen }) => {
 const getCartByUserId = async (userId) => {
     try {
         const { rows } = await client.query(`
-            SELECT games.id AS id, name, price, "orderId"
+            SELECT games.id AS id, name, price, image, "orderId"
             FROM games
             JOIN orders_games
             ON games.id = orders_games."gameId"
