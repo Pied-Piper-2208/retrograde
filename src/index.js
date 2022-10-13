@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  json,
-} from "react-router-dom";
-import { createRoot } from "react-dom/client";
-import { Home, Details, Cart, AdminPage } from "./components";
-import Register from "./RegisterPage";
-import Login from "./LoginPage";
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { Home, Details, Cart, AdminPage, Checkout } from './components';
+import Register from "./RegisterPage"
+import Login from "./LoginPage"
 
 const App = () => {
   const loggedInUser = localStorage.getItem("currentUser");
@@ -25,6 +19,7 @@ const App = () => {
           <Link to="/">Home</Link>
           {userData?.isAdmin ? <Link to="/admin">Admin Page</Link> : null}
           <Link to="/cart">My Cart</Link>
+          <Link to="/checkout">Checkout</Link>
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
         </nav>
@@ -55,6 +50,8 @@ const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
+
           <Route
             path="/:id"
             element={<Details cart={cart} setCart={setCart} />}
