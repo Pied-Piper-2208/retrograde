@@ -1,5 +1,5 @@
 const ordersRouter = require('express').Router();
-const {  getCartByUserId, orderIsOpenFalse, deleteGameFromCart } = require('../db');
+const {  getCartByUserId, orderIsOpenFalse, deleteGameFromCart, createOrder, createOrders_Games } = require('../db');
 
 ordersRouter.get('/:userId', async (req, res) => {
     const { userId } = req.params
@@ -33,6 +33,19 @@ ordersRouter.delete('/:orderId', async (req, res) => {
         throw error;
     }
 })
+
+ordersRouter.patch('/:gameId/:userId'), async (req, res) => {
+    const { gameId, userId } = req.params
+    try {
+        const { id } = await createOrder({userId, isOpen: True});
+        const cartItem = await createOrders_Games({id, gameId});
+
+        res.send(cartItem);
+    } catch (error) {
+        console.error("Error adding item to user's cart!")
+        throw error;
+    }
+};
 
 
 module.exports = ordersRouter;

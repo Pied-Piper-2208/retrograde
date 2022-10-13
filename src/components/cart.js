@@ -25,7 +25,7 @@ export const Cart = ({ cart, setCart }) => {
 
     return (
         <>
-            {total?<>
+            {cart.length?<>
                 <h1>Your Cart:</h1>
                 {cart.map(({id, name, price, image, quantity}) => {
                     return (

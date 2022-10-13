@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-	background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/850d5888-f262-47d0-bb7b-34d03cd8d3ee/dbk7ro6-e704fd42-1159-4a30-9231-324475986be8.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzg1MGQ1ODg4LWYyNjItNDdkMC1iYjdiLTM0ZDAzY2Q4ZDNlZVwvZGJrN3JvNi1lNzA0ZmQ0Mi0xMTU5LTRhMzAtOTIzMS0zMjQ0NzU5ODZiZTguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.s1rQVnmRdqtBL5Qe0IfTM59F3Z0d5Nh97HEpRS7XZdw);
-	background-size: cover;
-	z-index:-5;
+  background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/850d5888-f262-47d0-bb7b-34d03cd8d3ee/dbk7ro6-e704fd42-1159-4a30-9231-324475986be8.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzg1MGQ1ODg4LWYyNjItNDdkMC1iYjdiLTM0ZDAzY2Q4ZDNlZVwvZGJrN3JvNi1lNzA0ZmQ0Mi0xMTU5LTRhMzAtOTIzMS0zMjQ0NzU5ODZiZTguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.s1rQVnmRdqtBL5Qe0IfTM59F3Z0d5Nh97HEpRS7XZdw) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 	color: white;
-	font-family: 'Monoton', cursive;
+  text-shadow: 6px 6px 6px black;
+	font-family: 'Press Start 2P', cursive;
 	font-size: 2em;
 }
 
