@@ -58,7 +58,7 @@ const Login = (props) => {
         // setCurrentUser(data.user.username);
         storeCurrentUser(data.user);
         storeCurrentToken(data.token);
-        // navigate('/loggedInDashboard');  
+        navigate('/cart');  
      }
 }
 
