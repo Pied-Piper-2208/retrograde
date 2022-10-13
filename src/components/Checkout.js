@@ -24,7 +24,7 @@ const Checkout = () => {
                 <fieldset>
                 <legend>Customer Information</legend>
                 <div>
-                <label for="email" />
+                <label htmlFor="email" />
                 <input
                     id="email"
                     type="text"
@@ -38,14 +38,14 @@ const Checkout = () => {
                 <fieldset>
                 <legend>Shipping Address</legend>
                 <div>
-                <label for="fullName" />
+                <label htmlFor="fullName" />
                 <input
                     id="fullName"
                     type="text"
                     name="fullName"
                     placeholder="First and Last Name"
                 />
-                <label for="shipping-address-street-address" />
+                <label htmlFor="shipping-address-street-address" />
                 <input
                     id="address"
                     type="text"
@@ -53,7 +53,7 @@ const Checkout = () => {
                     placeholder="Address"
                 />
                 <div>
-                    <label for="apt_suite" />
+                    <label htmlFor="apt_suite" />
                     <input
                     id="apt_suite"
                     type="text"
@@ -62,21 +62,21 @@ const Checkout = () => {
                     />
                 </div>
                 <div>
-                    <label for="city" />
+                    <label htmlFor="city" />
                     <input
                     id="city"
                     type="text"
                     name="city"
                     placeholder="City"
                     />
-                    <label for="state" />
+                    <label htmlFor="state" />
                     <input
                     id="state"
                     type="text"
                     name="state"
                     placeholder="State"
                     />
-                    <label for="zipCode" />
+                    <label htmlFor="zipCode" />
                     <input
                     id="zipCode"
                     type="text"
@@ -91,14 +91,14 @@ const Checkout = () => {
                 <fieldset>
                 <legend>Payment: Add a credit or debit card</legend>
                 <div>
-                <label for="cardNumber" />
+                <label htmlFor="cardNumber" />
                 <input
                     id="cardNumber"
                     type="text"
                     name="cardNumber"
                     placeholder="Card Number"
                 />
-                <label for="nameOnCard" />
+                <label htmlFor="nameOnCard" />
                 <input
                     id="nameOnCard"
                     type="text"
@@ -106,7 +106,7 @@ const Checkout = () => {
                     placeholder="Name on Card"
                 />
                 <div>
-                    <label for="expDate" />
+                    <label htmlFor="expDate" />
                     <input
                     id="expDate"
                     type="text"
@@ -115,7 +115,7 @@ const Checkout = () => {
                     />
                 </div>
                 <div>
-                    <label for="code" />
+                    <label htmlFor="code" />
                     <input
                     id="code"
                     type="text"
