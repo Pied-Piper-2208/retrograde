@@ -36,7 +36,7 @@ export const Details = ({cart, setCart}) => {
                 <div className="GameName">{game.name}</div>
                 <div className="GamePrice">${game.price}</div>
                 <div className="GameDescription">{game.description}</div>
-                <Link to ='/'>Back to Home</Link>
+                <Link to ='../'>Back to Home</Link>
                 <br></br>
                 <button onClick={() => handleClick()}>Add to Cart</button>
             </div>
