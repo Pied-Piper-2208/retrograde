@@ -44,6 +44,7 @@ export const AdminPage = () => {
                 <button onClick={()=>postAndOptions()}>Hide Details</button>
                 <p>Price: ${game.price}</p>
                 <p>Genre: {game.genre}</p>
+                <img className="GamePhoto" src={game.image} alt={game.name}/>
                 <p>Description: {game.description}</p>
             </div>
         )
