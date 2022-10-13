@@ -10,13 +10,22 @@ const App = () => {
 
     return (
         <div>
+
           <div className="topnav">
+            <nav>
             <Link to="/">Home</Link>
             <Link to="/admin">Admin Page</Link>
             <Link to="/cart">My Cart</Link>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
+            </nav>
+            <div>
+
+            </div>
+
           </div>
+          <h1 className='title'>RETROGRADE PC GAMES</h1>
+
           <div>
             <Routes>
               <Route path='/admin' element={<AdminPage />}/>
