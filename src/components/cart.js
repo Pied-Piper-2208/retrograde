@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { deleteFromCart } from "./axios";
 
 export const Cart = ({ cart, setCart }) => {
 
@@ -19,8 +20,12 @@ export const Cart = ({ cart, setCart }) => {
         }))
     }
 
-    const handleDelete = (gameid) => {
-        setCart(cart.filter(({id})=>id!==gameid))
+    const loggedInUser = localStorage.getItem("currentUser");
+    const userData = JSON.parse(loggedInUser);
+
+    const handleDelete = async (gameId) => {
+        setCart(cart.filter(({id})=>id!==gameId))
+        userData ? deleteFromCart(gameId) : null;
     }
 
     return (
