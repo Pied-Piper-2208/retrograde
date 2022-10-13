@@ -1,20 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const Checkout = ({ cart, setCart }) => {
     const handleDelete = (gameid) => {
         setCart(cart.filter(({id})=>id!==gameid))
     }
+    const handlePurchase = () => {
+        alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days!");
+        window.location = '/'
+    }
+
+    const handleGoBack = () => {
+        window.location = '/cart'
+    }
     return (
         <>
-        <div>
+        <div id="forms">
             <h1>Checkout</h1>
             <h2>Order Summary</h2>
             <ul>
-                <li>Items: </li>
-                <li>Shipping and handling: $0.00</li>
-                <li>Total before taxes: </li>
-                <li>Estimated taxes: </li>
-                <li>Order total:1 </li>
+                <li>Purchases: </li>
+                <li>Shipping and handling: $0.00 (that's on us!) </li>
+                <li>Total before taxes: $</li>
+                <li>Estimated taxes: $ </li>
+                <li>Order total: $ </li>
             </ul>
             <div id="customerInfo">
                 <fieldset>
@@ -53,7 +63,7 @@ const Checkout = ({ cart, setCart }) => {
                     <input
                     id="apt_suite"
                     type="text"
-                    name="extended_address"
+                    name="apt_suite"
                     placeholder="Apt/Suite"
                     />
                 </div>
@@ -122,6 +132,10 @@ const Checkout = ({ cart, setCart }) => {
                 </div>
             </fieldset>
             </div>
+        </div>
+        <div id="navs">
+            <Link to="/cart">Back to Your Cart</Link>
+            <button onClick={handlePurchase} >Purchase</button>
         </div>
         </>
     )
