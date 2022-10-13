@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link, Route, Routes } from "react-router-dom"
 import { createGame, deleteGame, editGame, getAllGames, getAllUsers } from "./axios"
 
 export const AdminPage = () => {
@@ -139,16 +140,38 @@ export const AdminPage = () => {
 
     return (
         <div id="Administrator">
-            {isCreatingGame?<NewGame />:<button onClick={()=>setIsCreatingGame(true)}>Create Game</button>}
-            {allGames.map(game=>{
-                const option = focusedGameId===game.id ? options : "default"
-                return (
-                    <div key={game.id}>
-                        <h4>{game.name}</h4>
-                        {adminFuncs[option](game)}
-                    </div>
-                )
-            })}
+            <nav>
+                <Link to="games">Games</Link>
+                <Link to="users">Users</Link>
+            </nav>
+            <Routes>
+                <Route path="*" element={<div>Welcome to the admin page!</div>}/>
+                <Route path="games" element={
+                <div>
+                    {isCreatingGame?<NewGame />:<button onClick={()=>setIsCreatingGame(true)}>Create Game</button>}
+                    {allGames.map(game=>{
+                        const option = focusedGameId===game.id ? options : "default"
+                        return (
+                            <div key={game.id}>
+                                <h4>{game.name}</h4>
+                                {adminFuncs[option](game)}
+                            </div>
+                        )
+                    })}
+                </div>}/>
+                <Route path="users" element={
+                <div>
+                    <hr/>
+                    {users.map(user=>{
+                        return (
+                            <div>
+                                {user.username}<br/>
+                                {user.emailAddress}<hr/>
+                            </div>
+                        )
+                    })}
+                </div>}/>
+            </Routes>
         </div>
     )
 }

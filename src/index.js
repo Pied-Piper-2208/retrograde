@@ -51,14 +51,14 @@ const App = () => {
 
       <div>
         <Routes>
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/*" element={<AdminPage />} />
           <Route path="/" element={<Home setCart={setCart} cart={cart}/>}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
 
           <Route
-            path="/:id"
+            path="/games/:id"
             element={<Details cart={cart} setCart={setCart} />}
           ></Route>
           <Route

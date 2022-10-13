@@ -20,7 +20,7 @@ export const Home = ({ setCart }) => {
                             <div className="GameQuickInfo">
                                 <div className="GameName">{game.name}</div>
                                 <div className="GamePrice">${game.price}</div>
-                                <Link className="MoreInfo" to={`/${game.id}`}>More info</Link>
+                                <Link className="MoreInfo" to={`/games/${game.id}`}>More info</Link>
                             </div>
                         </div>
                     )
