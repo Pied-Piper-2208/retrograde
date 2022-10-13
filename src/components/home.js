@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllGames } from "./axios";
 import { Link } from "react-router-dom";
 
-export const Home = ({ setCart }) => {
+export const Home = () => {
     const [allGames, setAllGames] = useState([])
 
     useEffect(()=>{

@@ -20,7 +20,7 @@ export const Details = ({cart, setCart}) => {
         if (!inCart) {
             game.quantity = 1
             setCart([...cart, game]);
-            userData ? await addToCart(id, userData.id) : null;
+            userData ? await addToCart(game.id, userData.id) : null;
             alert(`Added ${game.name} to your cart!`)
         }
         else

@@ -23,23 +23,23 @@ export const Cart = ({ cart, setCart }) => {
     const loggedInUser = localStorage.getItem("currentUser");
     const userData = JSON.parse(loggedInUser);
 
-    const handleDelete = async (gameId) => {
+    const handleDelete = async (gameId, orderId) => {
         setCart(cart.filter(({id})=>id!==gameId))
-        userData ? deleteFromCart(gameId) : null;
+        userData ? deleteFromCart(orderId) : null;
     }
 
     return (
         <>
             {cart.length?<>
                 <h1>Your Cart:</h1>
-                {cart.map(({id, name, price, image, quantity}) => {
+                {cart.map(({id, name, price, image, quantity, orderId}) => {
                     return (
                         <div className='CartItem' key={id}>
                             <img className="GamePhoto" src={image} alt={name}/>
                             <h3>{name}</h3>
                             <div>${price*quantity}</div>
                             <span>Quantity:</span> <input onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
-                            <button onClick={()=>handleDelete(id)}>Remove</button>
+                            <button onClick={()=>handleDelete(id, orderId)}>Remove</button>
                         </div>
                     )
                 })}

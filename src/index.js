@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { Home, Details, Cart, AdminPage, Checkout, getUserCart } from './components';
+import { Home, Details, Cart, AdminPage, Checkout } from './components';
+import { getUserCart } from './components/axios';
 import Register from "./RegisterPage"
 import Login from "./LoginPage"
 
