@@ -48,5 +48,3 @@ export const Details = ({cart, setCart}) => {
         </div>
     )
 }
-
-export default Details
