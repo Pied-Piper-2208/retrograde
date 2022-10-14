@@ -24,9 +24,9 @@ body {
 }
 
 #AllGames {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .Game {
@@ -39,9 +39,9 @@ body {
 }
 
 .GamePhoto {
-    width: 150px;
-    height: 225px;
-    margin-bottom: 10px;
+  width: 150px;
+  height: 225px;
+  margin-bottom: 10px;
 }
 
 .GameQuickInfo {
@@ -51,7 +51,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
 }
 
 .GameName {
@@ -62,7 +61,6 @@ body {
   padding-bottom: 10px;
 }
 
-
 .MoreInfo {
   background-color: light;
   color: lightskyblue;
@@ -70,6 +68,13 @@ body {
   font-weight: bolder;
 }
 
+.GameDetailsImage {
+  border: 2px solid black;
+  width: 28%;
+  height: 28%;
+  float: left;
+  margin-right: 15px;
+}
 
 .topnav {
     background-color: #333;
