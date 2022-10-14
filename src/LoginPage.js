@@ -51,7 +51,9 @@ const saveUsername = () => {
     <div className="container">
       <h1>Login</h1>
       <form id="login" className="user-login">
-        <label htmlFor="username">Username: </label>
+      <fieldset>
+      <legend>Enter Username</legend>
+        <label htmlFor="username"></label>
         <input
           id="username"
           name="username"
@@ -60,7 +62,10 @@ const saveUsername = () => {
           placeholder="Enter username"
           required
         ></input>
-        <label htmlFor="password">Password: </label>
+        </fieldset>
+        <fieldset>
+        <legend>Enter Password</legend>
+        <label htmlFor="password"></label>
         <input
           id="password"
           type="password"
@@ -69,7 +74,8 @@ const saveUsername = () => {
           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
           required
         ></input>
-        <input type="submit" onClick={event => handleUserLogin(event)} value="Login"></input>
+        </fieldset>
+        <input id="logButton" type="submit" onClick={event => handleUserLogin(event)} value="Login"></input>
       </form>
     </div>
   );
