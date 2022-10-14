@@ -5,20 +5,10 @@ import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './com
 import { getUserCart } from './components/axios'
 
 const App = () => {
-  const [token, setToken] = useState('')
-  const loggedInUser = localStorage.getItem("currentUser");
-  const userData = JSON.parse(loggedInUser);
+  const [token, setToken] = useState(localStorage.getItem("EpicGamerTokenForRetrograde"))
   const navigate = useNavigate();
   
-
   const [cart, setCart] = useState([]);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [login, setLogin] = useState(false);
-
-  useEffect(()=>{
-    if (loggedInUser) setLogin(true);
-    if (userData?.isAdmin) setIsAdmin(true);
-  }, [])
 
   useEffect(()=>{
     login ? getUserCart(userData.id).then(results => setCart(results.map(

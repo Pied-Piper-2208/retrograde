@@ -52,6 +52,6 @@ export const getUserCart = async (userId) => {
 }
 
 export const login = async (username, password) => {
-    const response = await axios.get(`${BASE_URL}/users/login`, {username, password})
+    const response = await axios.post(`${BASE_URL}/users/login`, {username, password})
     return response.data
 }

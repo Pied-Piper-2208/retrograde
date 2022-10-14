@@ -9,7 +9,8 @@ export const Login = ({setToken}) => {
   const handleUserLogin = async (event) => {
     event.preventDefault()
     const getToken = async () => {
-      const { token } = await login({username, password})
+      const { token } = await login(username, password)
+      localStorage.setItem("EpicGamerTokenForRetrograde",token)
       setToken(token)
     }
     getToken()

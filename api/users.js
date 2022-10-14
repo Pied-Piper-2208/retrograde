@@ -5,8 +5,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const { getUserByUsername, createUser, getAllUsers} = require('../db')
 
-router.get('/login', async (req, res, next) => {
-
+router.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
 
     if (!username || !password){
@@ -49,7 +48,7 @@ router.get('/login', async (req, res, next) => {
       }
 });
 
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     res.send(req.body)
 })
 
