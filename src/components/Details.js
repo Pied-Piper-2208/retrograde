@@ -42,8 +42,9 @@ export const Details = ({cart, setCart}) => {
                 <div className="GameDescription">{game.description}</div>
                 <Link to ='../'>Back to Home</Link>
                 <br></br>
+                <Link to="/cart">
                 <button onClick={() => handleClick()}>Add to Cart</button>
-            </div>
+                </Link>            </div>
         </div>
     )
 }
