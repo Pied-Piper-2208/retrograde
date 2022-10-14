@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const Checkout = () => {
+export const Checkout = () => {
     const handlePurchase = () => {
         alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!");
         window.location = '/'
@@ -134,5 +134,3 @@ const Checkout = () => {
         </>
     )
 };
-
-export default Checkout

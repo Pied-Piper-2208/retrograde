@@ -50,3 +50,8 @@ export const getUserCart = async (userId) => {
     const response = await axios.get(`${BASE_URL}/orders/${userId}`)
     return response.data
 }
+
+export const login = async (username, password) => {
+    const response = await axios.get(`${BASE_URL}/users/login`, {username, password})
+    return response.data
+}

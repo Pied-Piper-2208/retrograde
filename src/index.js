@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
-import { Home, Details, Cart, AdminPage, Checkout } from './components';
-import { getUserCart } from './components/axios';
-import Register from "./components/RegisterPage"
-import Login from "./components/LoginPage"
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { createRoot } from 'react-dom/client'
+import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './components'
+import { getUserCart } from './components/axios'
 
 const App = () => {
+  const [token, setToken] = useState('')
   const loggedInUser = localStorage.getItem("currentUser");
   const userData = JSON.parse(loggedInUser);
   
@@ -43,30 +42,12 @@ const logout = (event) => {
         </nav>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>
-      <div id="overlay">
-        <h1></h1>
-      </div>
-      <div id="hey">
-        <div id="layer-up"></div>
-      </div>
-      <div id="layer-0">
-        <div id="layer-1">
-          <div id="layer-2">
-            <div id="lines">
-              <div id="layer-corner"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="mtnZZZ"></div>
-
       <div>
         <Routes>
           <Route path="/admin/*" element={<AdminPage />} />
           <Route path="/" element={<Home setCart={setCart} cart={cart}/>}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login setIsAdmin={setIsAdmin} setLogin={setLogin} />}></Route>
+          <Route path="/login" element={<Login setToken={setToken} />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
           <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} />}></Route>
           <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />}></Route>
@@ -75,6 +56,7 @@ const logout = (event) => {
     </div>
   );
 };
+
 const root = createRoot(document.getElementById("root"));
 root.render(
   <Router>

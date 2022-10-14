@@ -3,9 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { storeCurrentUser, storeCurrentToken, clearCurrentToken, getCurrentToken, clearCurrentUser } from './auth';
 
-
-
-const Register = (props) => {
+export const Register = (props) => {
 
   const [newUser, setNewUser] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -111,5 +109,3 @@ const Register = (props) => {
     </div>
   );
 };
-
-export default Register;

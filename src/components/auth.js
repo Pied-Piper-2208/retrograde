@@ -69,5 +69,4 @@ function storeCurrentUser(user) {
     storeCurrentRoutine,
     getCurrentRoutine,
     clearCurrentRoutine,
-    
   }
