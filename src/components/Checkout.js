@@ -121,8 +121,9 @@ const Checkout = () => {
             </div>
         </div>
         <div id="navs">
-            <Link to="/cart">Back to Your Cart</Link>
             <button id="purchaseButton" onClick={handlePurchase} >Purchase</button>
+            <br></br>
+            <Link id="backLink" to="/cart">Back to Your Cart</Link>
         </div>
         </>
     )
