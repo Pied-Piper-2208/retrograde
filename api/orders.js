@@ -34,18 +34,18 @@ ordersRouter.delete('/:orderId', async (req, res) => {
     }
 })
 
-ordersRouter.patch('/:gameId/:userId'), async (req, res) => {
-    const { gameId, userId } = req.params
+ordersRouter.post('/', async (req, res) => {
+    const { gameId, userId } = req.body
     try {
-        const { id } = await createOrder({userId, isOpen: True});
-        const cartItem = await createOrders_Games({id, gameId});
+        const { id } = await createOrder({userId, isOpen: true});
+        const cartItem = await createOrders_Games({orderId: id, gameId});
 
         res.send(cartItem);
     } catch (error) {
         console.error("Error adding item to user's cart!")
         throw error;
     }
-};
+});
 
 
 module.exports = ordersRouter;
