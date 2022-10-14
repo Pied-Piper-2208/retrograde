@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { deleteFromCart } from "./axios";
-=======
 import {BrowserRouter as Router, Link} from 'react-router-dom'
->>>>>>> main
+import { deleteFromCart } from "./axios";
 
 export const Cart = ({ cart, setCart }) => {
 
