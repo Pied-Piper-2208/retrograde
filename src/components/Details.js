@@ -33,8 +33,8 @@ export const Details = ({cart, setCart}) => {
     },[])
 
     return(
-        <div id="HomePage">
-            <div className="Game" key={game.id}>
+        <div>
+            <div key={game.id}>
                 <img className="GameDetailsImage" src={game.image} alt={game.name}/>
                 <div className="GameQuickInfo"></div>
                 <div className="GameName">{game.name}</div>
@@ -44,7 +44,7 @@ export const Details = ({cart, setCart}) => {
                 <br></br>
                 <Link to="/cart">
                 <button onClick={() => handleClick()}>Add to Cart</button>
-                </Link>            </div>
+                </Link></div>
         </div>
     )
 }
