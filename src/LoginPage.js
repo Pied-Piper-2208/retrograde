@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { storeCurrentUser, storeCurrentToken } from './auth';
 
 
-const Login = () => {
+const Login = ({ setIsAdmin }) => {
 
   let UserName = '';
   let navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleUserLogin = async (event) => {
     event.preventDefault();
-  };
 
-  const handleUserLogin = async () => {
     const response = await fetch("http://localhost:4000/api/users/login", {
         method: "POST",
         headers: {
@@ -38,6 +36,7 @@ const Login = () => {
         storeCurrentUser(data.user);
         storeCurrentToken(data.token);
         navigate('/');  
+        if (data.user.isAdmin === true) {setIsAdmin(true)};
      }
 }
 
@@ -50,7 +49,7 @@ const saveUsername = () => {
   return (
     <div className="container">
       <h1>Login</h1>
-      <form id="login" className="user-login" onSubmit={handleSubmit}>
+      <form id="login" className="user-login">
         <label htmlFor="username">Username: </label>
         <input
           id="username"
@@ -69,10 +68,16 @@ const saveUsername = () => {
           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
           required
         ></input>
-        <input type="submit" onClick={handleUserLogin} value="Login"></input>
+        <input type="submit" onClick={event => handleUserLogin(event)} value="Login"></input>
       </form>
     </div>
   );
+};
+
+export const logout = () => {
+  localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentToken");
+  setIsAdmin(false);
 };
 
 export default Login;

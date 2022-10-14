@@ -4,8 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { Home, Details, Cart, AdminPage, Checkout } from './components';
 import { getUserCart } from './components/axios';
 import Register from "./RegisterPage"
-import Login from "./LoginPage"
-import logout from './LogoutButton';
+import Login, { logout } from "./LoginPage"
 
 const App = () => {
   const loggedInUser = localStorage.getItem("currentUser");
@@ -13,6 +12,7 @@ const App = () => {
   
 
   const [cart, setCart] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(()=>{
     userData ? getUserCart(userData.id).then(results => setCart(results.map(
@@ -24,7 +24,7 @@ const App = () => {
       <div className="topnav">
         <nav>
           <Link to="/">Home</Link>
-          {userData?.isAdmin ? <Link to="/admin">Admin Page</Link> : null}
+          {isAdmin ? <Link to="/admin">Admin Page</Link> : null}
           <Link to="/cart">My Cart</Link>
           <Link to="/checkout">Checkout</Link>
           <Link to="/login">Login</Link>
@@ -56,7 +56,7 @@ const App = () => {
           <Route path="/admin/*" element={<AdminPage />} />
           <Route path="/" element={<Home setCart={setCart} cart={cart}/>}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/login" element={<Login setIsAdmin={setIsAdmin} />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
           <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} />}></Route>
           <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />}></Route>
