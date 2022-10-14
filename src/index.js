@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Home, Details, Cart, AdminPage, Checkout } from './components';
+import { getUserCart } from './components/axios';
 import Register from "./RegisterPage"
 import Login from "./LoginPage"
 import LogoutButton from './LogoutButton';
@@ -12,6 +13,11 @@ const App = () => {
   
 
   const [cart, setCart] = useState([]);
+
+  useEffect(()=>{
+    userData ? getUserCart(userData.id).then(results => setCart(results.map(
+        result=>{result.quantity = 1; return result}))) : null;
+}, [])
 
   return (
     <div>
