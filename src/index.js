@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { Home, Details, Cart, AdminPage, Checkout } from './components';
 import Register from "./RegisterPage"
 import Login from "./LoginPage"
+import LogoutButton from './LogoutButton';
 
 const App = () => {
   const loggedInUser = localStorage.getItem("currentUser");
@@ -23,6 +24,9 @@ const App = () => {
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
         </nav>
+        <div className='logout'>
+        <LogoutButton/>
+        </div>
         <div></div>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>
@@ -51,6 +55,8 @@ const App = () => {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
+          <Route path="/login" element={<LogoutButton />}></Route>
+
 
           <Route
             path="/games/:id"
