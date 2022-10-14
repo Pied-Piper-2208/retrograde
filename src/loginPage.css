@@ -1,0 +1,39 @@
+.container h1 {
+    color: #E93CAC;
+
+}
+
+.container input {
+    width: 85%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    font-size: 35px;
+    opacity: .9;
+}
+
+#login {
+    color: #2AD2C9;
+}
+
+#logButton {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    font-size: 42px;
+    padding: 10px;
+    width: 82.5%;
+    margin: 10px;
+    border-radius: 5px;
+
+}
+
+.container button {
+        font-family: 'Press Start 2P';
+        background-color: #2AD2C9;
+        font-size: 42px;
+        padding: 10px;
+        width: 95%;
+        margin: 10px;
+        border-radius: 5px;
+}
