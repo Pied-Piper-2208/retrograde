@@ -1,22 +1,14 @@
 import { useEffect, useState } from "react";
-import { getAllGames, getUserCart } from "./axios";
+import { getAllGames } from "./axios";
 import { Link } from "react-router-dom";
 
-export const Home = ({ setCart }) => {
+export const Home = () => {
     const [allGames, setAllGames] = useState([])
-
-    const loggedInUser = localStorage.getItem("currentUser");
-    const userData = JSON.parse(loggedInUser);
 
     useEffect(()=>{
         getAllGames()
         .then(results=>setAllGames(results))
     },[])
-
-    useEffect(()=>{
-        userData ? getUserCart(userData.id).then(results => setCart(results.map(
-            result=>{result.quantity = 1; return result}))) : null;
-    }, [])
 
     return(
         <div id="HomePage">
