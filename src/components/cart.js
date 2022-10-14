@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {BrowserRouter as Router, Link} from 'react-router-dom'
 
 export const Cart = ({ cart, setCart }) => {
 
@@ -39,7 +40,9 @@ export const Cart = ({ cart, setCart }) => {
                     )
                 })}
                 <h3>Total: ${total}</h3>
-                <button>Proceed to Checkout</button>
+                <Link to="/Checkout">
+                  <button>Proceed to Checkout</button>
+                </Link>
             </>:<h1>Your Cart Is Empty!</h1>}
         </>
     )
