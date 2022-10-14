@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import './registerPage.css'
 import { Link } from "react-router-dom";
 // import { storeCurrentUser, storeCurrentToken, clearCurrentToken, getCurrentToken, clearCurrentUser } from './auth';
 
@@ -61,9 +62,9 @@ const Register = (props) => {
 
 
   return (
-    <div>
+    <div id="container1">
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form id="registerForm" onSubmit={handleSubmit}>
       <fieldset>
       <legend>Enter User Info</legend>
         <input
@@ -104,7 +105,7 @@ const Register = (props) => {
           //}}
           ></input>
         </fieldset>
-        <button type="text">Register</button>
+        <button id="registerButton" type="text">Sign Up!</button>
       </form>
     </div>
   );
