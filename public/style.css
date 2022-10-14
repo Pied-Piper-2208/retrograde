@@ -10,52 +10,93 @@ body {
   text-shadow: 6px 6px 6px black;
 	font-family: 'Press Start 2P', cursive;
 	font-size: 2em;
+  letter-spacing: 1.25px;
+  line-height: 1.4;
 }
+/* Change 11: Added letter-spacing and line-height for font changes. This make our font easier to read horizonally and vertically cause it was a bit smushed before  */
 
 .title {
   color: blue;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
-  font-size: 40px;
+  font-size: 60px;
+  overflow-wrap: break-word; 
+  /* Change1: font-size increased to 60 */
+  /* Change 2: added line 20, break-word prevents the title from spilling over on small views like mobile  */
 
 }
 
 #AllGames {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
+/* Change 5: flex-wrap wraps games, otherwise they were flowing off page on mobile and narrow screens */
 
 .Game {
-    margin: 20px;
+  margin: 20px;
+  align-items: center;
+  width: 150px;
+  height: 225px;
+  margin-bottom: 80px;
+  padding-bottom: 80px;
 }
+/* change 13: removed margin ... this was causing lef and right side issues, but we already have margin bottom so its not needed */
+
+/* Change 6: Added width heights to match game photo. This prevents games from having different ratios, causing display problems.  */
+
+/* Change 7: Added margin-bottom and set value to 80 px ... seems high, but its displaying good on desktop/mobile views  */
 
 .GamePhoto {
-    border: 2px solid black;
-    background-color: lightskyblue;
-    width: 1in;
-    height: 1.5in;
+    width: 150px;
+    height: 225px;
     margin-bottom: 10px;
 }
+/* Change 3: increased width to 200px and height 300px to keep thing consistent in pxs rather than inch. Also changed margin-bottom to 10px  */
+/* Change 12: Delete border and background color */
 
-.GameDetailsImage {
+/* .GameDetailsImage {
   border: 2px solid black;
   width: 40%;
   height: 40%;
   float: left;
   margin-right: 15px;
-}
+} */
+/* Change 4: Not sure if .GameDetailsImages does anything. Leave in, if I'm wrong.  */
+
+
+
 
 .GameQuickInfo {
   font-family: 'Press Start 2P', cursive;
   color: white;
-    width: 1in;
-    text-align: center;
-    font-size: small;
+  font-size: small;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
 }
+/* Change 8: Changed width to 100% so game info is not squished*/
+/* Change 9: Added flex, flex wrap for edge cases, justify-content to flex-start so it aligns left */
+
+.GameName {
+  font-family: 'Press Start 2P', cursive;
+  color: navajowhite;
+  font-size: medium;
+  font-weight: bolder;
+  padding-bottom: 10px;
+}
+/* Change 10: Added new properties to .GameName to back it more distinct */
+
 
 .MoreInfo {
-  color: white;
+  background-color: light;
+  color: lightskyblue;
+  text-decoration: none;
+  font-weight: bolder;
 }
+/* Change 14: Added .MoreInfo to give padding different style */
+
 
 /* Add a black background color to the top navigation */
 .topnav {
