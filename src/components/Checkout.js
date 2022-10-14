@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../checkout.css'
 
 
 const Checkout = () => {
@@ -12,14 +13,6 @@ const Checkout = () => {
         <>
         <div id="forms">
             <h1>Checkout</h1>
-            <h2>Order Summary</h2>
-            <ul>
-                <li>Purchases: </li>
-                <li>Shipping and handling: $0.00 (that's on us!) </li>
-                <li>Total before taxes: $</li>
-                <li>Estimated taxes: $ </li>
-                <li>Order total: $ </li>
-            </ul>
             <div id="customerInfo">
                 <fieldset>
                 <legend>Customer Information</legend>
@@ -89,7 +82,7 @@ const Checkout = () => {
             </div>
             <div id="payment">
                 <fieldset>
-                <legend>Payment: Add a credit or debit card</legend>
+                <legend>Payment</legend>
                 <div>
                 <label htmlFor="cardNumber" />
                 <input
@@ -129,7 +122,7 @@ const Checkout = () => {
         </div>
         <div id="navs">
             <Link to="/cart">Back to Your Cart</Link>
-            <button onClick={handlePurchase} >Purchase</button>
+            <button id="purchaseButton" onClick={handlePurchase} >Purchase</button>
         </div>
         </>
     )

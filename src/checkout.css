@@ -1,0 +1,27 @@
+#customerInfo {
+    color: #fff;
+}
+
+ fieldset {
+    border: 8px #E93CAC dotted;
+}
+
+#forms input {
+    width: 75%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    font-size: 30px;
+    opacity: .9;
+}
+
+#customerInfo, #shippingAdress, #payment {
+    color: #2AD2C9;
+}
+
+#purchaseButton {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    size-adjust: auto;
+}
