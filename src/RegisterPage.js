@@ -64,7 +64,8 @@ const Register = (props) => {
     <div>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
-        NAME
+      <fieldset>
+      <legend>Enter User Info</legend>
         <input
           type="text"
           placeholder="Enter username"
@@ -73,8 +74,6 @@ const Register = (props) => {
             console.log("New user set to ", event.target.value);
           }}
         ></input>
-
-        EMAIL
         <input
           type="text"
           placeholder="Enter email"
@@ -83,9 +82,9 @@ const Register = (props) => {
             console.log("New email set to ", event.target.value);
           }}
         ></input>
-
-
-        PASSWORD
+        </fieldset>
+        <fieldset>
+      <legend>Select Password</legend>
         <input
           id="password"
           type="password"
@@ -95,7 +94,6 @@ const Register = (props) => {
             console.log(event.target.value);
           }}
         ></input>
-        CONFIRM PASSWORD
         <input
           id="confirmpassword"
           type="password"
@@ -105,8 +103,8 @@ const Register = (props) => {
            // console.log(event.target.value);
           //}}
           ></input>
+        </fieldset>
         <button type="text">Register</button>
-        
       </form>
     </div>
   );
