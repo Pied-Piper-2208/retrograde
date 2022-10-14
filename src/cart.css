@@ -1,0 +1,35 @@
+h1 {
+    color: #E93CAC;
+}
+
+.CartGamePhoto {
+    width: 150px;
+    height: 225px;
+    float: left;
+    margin-right: 20px;
+}
+
+.CartItem {
+    padding: 10px 0px 20px 10px;
+}
+
+.Quantity {
+    font-size: medium;
+}
+
+.QuantityInput {
+    width: 30px;
+}
+
+#CartCheckoutLink {
+    color: black;
+    margin: 15px 28px 0px 0px;
+    text-decoration: none;
+    background-color: #2AD2C9;
+    text-shadow: none;
+    padding: 5px 5px 0 5px;
+}
+
+.CartGameName {
+    margin-bottom: none;
+}
