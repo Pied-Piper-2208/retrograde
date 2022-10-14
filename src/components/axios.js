@@ -42,7 +42,8 @@ export const deleteFromCart = async (orderId) => {
 }
 
 export const addToCart = async (gameId, userId) => {
-    const response = await axios.post(`${BASE_URL}/orders/${gameId}/${userId}`)
+    const response = await axios.post(`${BASE_URL}/orders`, {gameId, userId})
+    console.log(response.data)
     return response.data
 }
 
