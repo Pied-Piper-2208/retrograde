@@ -37,14 +37,12 @@ export const Details = ({cart, setCart}) => {
             <div key={game.id}>
                 <img className="GameDetailsImage" src={game.image} alt={game.name}/>
                 <div className="GameQuickInfo">
-                    <div className="GameName">{game.name}</div>
-                    <div className="GamePrice">${game.price}</div>
+                    <div className="DetailsGameName">{game.name}</div>
+                    <div className="DetailsGamePrice">${game.price}</div>
                     <div className="GameDescription">{game.description}</div>
-                    <Link to ='../'>Back to Home</Link>
+                    <Link className="DetailsLink" to ='../'>Back to Home</Link>
                     <br></br>
-                    <Link to="/cart">
-                    <button onClick={() => handleClick()}>Add to Cart</button>
-                    </Link>
+                    <Link className="DetailsLink" to="/cart" onClick={() => handleClick()}>Add to Cart</Link>
                 </div>
             </div>
         </div>
