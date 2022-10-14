@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { storeCurrentUser, storeCurrentToken } from '../auth';
 
-
-const Login = ({ setIsAdmin }) => {
+const Login = ({ setIsAdmin, setLogin }) => {
 
   let UserName = '';
   let navigate = useNavigate();
@@ -35,7 +34,8 @@ const Login = ({ setIsAdmin }) => {
         alert(data.message);
         storeCurrentUser(data.user);
         storeCurrentToken(data.token);
-        navigate('/');  
+        navigate('/');
+        setLogin(true);
         if (data.user.isAdmin === true) {setIsAdmin(true)};
      }
 }
@@ -72,12 +72,6 @@ const saveUsername = () => {
       </form>
     </div>
   );
-};
-
-export const logout = () => {
-  localStorage.removeItem("currentUser");
-  localStorage.removeItem("currentToken");
-  setIsAdmin(false);
 };
 
 export default Login;

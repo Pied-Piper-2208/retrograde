@@ -48,7 +48,7 @@ export const Cart = ({ cart, setCart }) => {
                 <Link to="/Checkout">
                   <button>Proceed to Checkout</button>
                 </Link>
-            </>:<h1>Your Cart Is Empty!</h1>}
+            </>:<h2 id="EmptyCart">Your Cart Is Empty!</h2>}
         </>
     )
 };
