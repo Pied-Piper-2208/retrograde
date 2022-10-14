@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './components'
 import { getUserCart } from './components/axios'
@@ -8,6 +8,7 @@ const App = () => {
   const [token, setToken] = useState('')
   const loggedInUser = localStorage.getItem("currentUser");
   const userData = JSON.parse(loggedInUser);
+  const navigate = useNavigate();
   
 
   const [cart, setCart] = useState([]);
@@ -15,19 +16,26 @@ const App = () => {
   const [login, setLogin] = useState(false);
 
   useEffect(()=>{
+    if (loggedInUser) setLogin(true);
+    if (userData?.isAdmin) setIsAdmin(true);
+  }, [])
+
+  useEffect(()=>{
     login ? getUserCart(userData.id).then(results => setCart(results.map(
         result=>{result.quantity = 1; return result}))) : setCart([]);
-}, [login])
+  }, [login])
 
-const logout = (event) => {
-  event.preventDefault();
+  const logout = (event) => {
+    event.preventDefault();
 
-  localStorage.removeItem("currentUser");
-  localStorage.removeItem("currentToken");
-  
-  setIsAdmin(false);
-  setLogin(false);
-};
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentToken");
+    
+    setIsAdmin(false);
+    setLogin(false);
+
+    navigate('/');
+  };
 
   return (
     <div>
