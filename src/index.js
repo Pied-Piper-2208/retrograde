@@ -5,7 +5,7 @@ import { Home, Details, Cart, AdminPage, Checkout } from './components';
 import { getUserCart } from './components/axios';
 import Register from "./RegisterPage"
 import Login from "./LoginPage"
-import LogoutButton from './LogoutButton';
+import logout from './LogoutButton';
 
 const App = () => {
   const loggedInUser = localStorage.getItem("currentUser");
@@ -27,13 +27,10 @@ const App = () => {
           {userData?.isAdmin ? <Link to="/admin">Admin Page</Link> : null}
           <Link to="/cart">My Cart</Link>
           <Link to="/checkout">Checkout</Link>
-          <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
+          <Link onClick={()=>logout()}>Logout</Link>
+          <Link to="/register">Register</Link>
         </nav>
-        <div className='logout'>
-        <LogoutButton/>
-        </div>
-        <div></div>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>
       <div id="overlay">
@@ -61,17 +58,8 @@ const App = () => {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
-          <Route path="/login" element={<LogoutButton />}></Route>
-
-
-          <Route
-            path="/games/:id"
-            element={<Details cart={cart} setCart={setCart} />}
-          ></Route>
-          <Route
-            path="/cart"
-            element={<Cart cart={cart} setCart={setCart} />}
-          ></Route>
+          <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} />}></Route>
+          <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />}></Route>
         </Routes>
       </div>
     </div>

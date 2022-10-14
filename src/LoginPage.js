@@ -1,34 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { storeCurrentUser, storeCurrentToken, clearCurrentToken, getCurrentToken, clearCurrentUser } from './auth';
+import { storeCurrentUser, storeCurrentToken } from './auth';
 
 
-const Login = (props) => {
-
-  console.log('props', props);
-  const currentUser = props.currentUser;
-  const setCurrentUser = props.setCurrentUser;
-  const token = props.token;
-  const setToken = props.setToken;
+const Login = () => {
 
   let UserName = '';
-  const path = process.env.REACT_APP_BASE_URL;
   let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const handleUserLogout = (event) => {
-    setCurrentUser(null);
-    clearCurrentToken();
-    clearCurrentUser();
-  }
-
   const handleUserLogin = async () => {
-
-    console.log("User name and password are ", document.getElementById("username").value, document.getElementById("password").value);
-
     const response = await fetch("http://localhost:4000/api/users/login", {
         method: "POST",
         headers: {
@@ -43,19 +27,14 @@ const Login = (props) => {
     });
     
     const data = await response.json();
-    console.log("Data is ", data);
     
     if (!data.success) {
         alert(data.message);
-        //bError = true;
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
         document.getElementById("username").focus();
     } else {
-        //bError = false;
         alert(data.message);
-        // setToken(data.token);
-        // setCurrentUser(data.user.username);
         storeCurrentUser(data.user);
         storeCurrentToken(data.token);
         navigate('/');  
@@ -65,7 +44,6 @@ const Login = (props) => {
 const saveUsername = () => {
 
   UserName = document.getElementById("username").value;
-  console.log("Inside save username", UserName);
 
 }
 
@@ -87,7 +65,6 @@ const saveUsername = () => {
           id="password"
           type="password"
           name="password"
-          //pattern="(?=.*\d)(?=.*[a-z])(?=.{8,}"
           placeholder="Enter password"
           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
           required

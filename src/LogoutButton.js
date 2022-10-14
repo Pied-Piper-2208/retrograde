@@ -1,7 +1,6 @@
-
 const logout = () => {
-    localStorage.clear();
-    window.location.href = "/login";
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentToken");
   };
   
   const LogoutButton = () => {
@@ -12,6 +11,4 @@ const logout = () => {
     );
   };
   
-  
-  export default LogoutButton;
-  
+  export default logout;
