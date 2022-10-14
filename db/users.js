@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 
 const createUser = async ({ username, password, emailAddress, isAdmin }) => {
     try {
-        console.log('emailAddress', emailAddress);
         const SALT_COUNT = 10;
 
         const hashedPassword = await bcrypt.hash(password, SALT_COUNT);

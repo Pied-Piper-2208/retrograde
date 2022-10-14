@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Home, Details, Cart, AdminPage, Checkout } from './components';
 import { getUserCart } from './components/axios';
-import Register from "./RegisterPage"
-import Login, { logout } from "./LoginPage"
+import Register from "./components/RegisterPage"
+import Login, { logout } from "./components/LoginPage"
 
 const App = () => {
   const loggedInUser = localStorage.getItem("currentUser");

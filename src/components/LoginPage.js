@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { storeCurrentUser, storeCurrentToken } from './auth';
+import { storeCurrentUser, storeCurrentToken } from '../auth';
 
 
 const Login = ({ setIsAdmin }) => {
@@ -12,7 +12,7 @@ const Login = ({ setIsAdmin }) => {
     event.preventDefault();
 
     const response = await fetch("http://localhost:4000/api/users/login", {
-        method: "POST",
+        method: "GET",
         headers: {
           'Content-Type': 'application/json'
         },

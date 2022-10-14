@@ -1,69 +1,58 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const { getUserByUsername, createUser, getUserById, getAllUsers} = require('../db');
+const express = require('express')
+const router = express.Router()
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const { getUserByUsername, createUser, getAllUsers} = require('../db')
 
-
-
-router.use((req, res, next) => {
-    console.log("A request is being made to /users");
-  
-    next();
-    
-  });
-  
-  // POST /api/users/login
-router.post('/login', async (req, res, next) => {
+router.get('/login', async (req, res, next) => {
 
     const { username, password } = req.body;
-    console.log("username/password is ", username, password);
-    //console.log("req is ", req);
-    
-    // request must have both
-    if (!username || !password) {
+
+    if (!username || !password){
       next({
         name: "MissingCredentialsError",
         message: "Please supply both a username and password"
-      });
+      })
     }
 
-    const user = await getUserByUsername(username);
-    if( user ) {
     try {
-        
-        const hashedPassword = user.password;
-        console.log('hashed', hashedPassword);
-        console.log('raw', password);
-        const isValid = await bcrypt.compare(password, hashedPassword);
-        console.log('isValid', isValid);
-        if (user && isValid) {
-          // create token & return to user
-          const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET);
-          req.user = user;
-          res.send({ success: true, user: user, message: "you're logged in!", token: token });
-        } else {
-          console.log('Wrong credentials');
-          next({ 
-            name: 'IncorrectCredentialsError', 
-            message: 'Username or password is incorrect'
-          });
-        }
-      } catch(error) {
-        console.log(error);
-        next(error);
-      }
-    } else {
-      console.log('No user found');
-      next({ 
-        name: 'NoSuchUserError', 
-        message: 'There is no user by that name. Please register'
-      });
-    }
-    });  
+      const user = await getUserByUsername(username);
 
-    // POST /api/users/register
+      if(!user){
+        next({ 
+          name: 'NoSuchUserError', 
+          message: 'There is no user by that name. Please register'
+        })
+      }
+
+      const hashedPassword = user.password;
+      const isValid = await bcrypt.compare(password, hashedPassword)
+
+      if (!isValid){
+        next({ 
+          name: 'IncorrectCredentialsError', 
+          message: 'Username or password is incorrect'
+        })
+      }
+      
+      const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET)
+      res.send({ success: true, user, message: "you're logged in!", token })
+
+      } catch(error) {
+        next({
+          name: 'TryCatchFailure',
+          message: 'Something happened in the try/catch',
+          error
+        })
+        throw error
+      }
+});
+
+router.get('/login', async (req, res) => {
+    res.send(req.body)
+})
+
 router.post('/register', async (req, res, next) => {
 
     const { username, password, emailAddress } = req.body;
@@ -77,16 +66,23 @@ router.post('/register', async (req, res, next) => {
           message: 'A user by that username already exists'
         });
       }
-      console.log('email', emailAddress);
+
       const user = await createUser({username, password, emailAddress});
-      console.log('user', user);
       const token = jwt.sign({id: user.id, username}, process.env.JWT_SECRET, {expiresIn: '1w'});
-      res.send({success: true, user: user, message: "Thank you for signing up", token});
-    } catch ({ name, message }) {
-        console.log('error', message);
-      next({ name, message})
+      res.send({success: true, user, message: "Thank you for signing up", token});
+    } catch (error) {
+      next({
+        name: 'TryCatchFailure',
+        message: 'Something happened in the try/catch',
+        error
+      })
+      throw error
     }
-  });
+});
+
+router.post('/register', async (req, res) => {
+  res.send(req.body)
+})
   
 router.get('/', async (req, res) => {
     try {
@@ -97,4 +93,4 @@ router.get('/', async (req, res) => {
     }
 })
 
-  module.exports = router;
+module.exports = router;
