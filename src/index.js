@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { Home, Details, Cart, AdminPage, Checkout } from './components';
 import { getUserCart } from './components/axios';
 import Register from "./RegisterPage"
-import Login, { logout } from "./LoginPage"
+import Login from "./LoginPage"
 
 const App = () => {
   const loggedInUser = localStorage.getItem("currentUser");
@@ -13,11 +13,22 @@ const App = () => {
 
   const [cart, setCart] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [login, setLogin] = useState(false);
 
   useEffect(()=>{
-    userData ? getUserCart(userData.id).then(results => setCart(results.map(
-        result=>{result.quantity = 1; return result}))) : null;
-}, [])
+    login ? getUserCart(userData.id).then(results => setCart(results.map(
+        result=>{result.quantity = 1; return result}))) : setCart([]);
+}, [login])
+
+const logout = (event) => {
+  event.preventDefault();
+
+  localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentToken");
+  
+  setIsAdmin(false);
+  setLogin(false);
+};
 
   return (
     <div>
@@ -27,8 +38,7 @@ const App = () => {
           {isAdmin ? <Link to="/admin">Admin Page</Link> : null}
           <Link to="/cart">My Cart</Link>
           <Link to="/checkout">Checkout</Link>
-          <Link to="/login">Login</Link>
-          <Link onClick={()=>logout()}>Logout</Link>
+          {!login ? <Link to="/login">Login</Link> : <Link onClick={event=>logout(event)}>Logout</Link>}
           <Link to="/register">Register</Link>
         </nav>
       </div>
@@ -56,7 +66,7 @@ const App = () => {
           <Route path="/admin/*" element={<AdminPage />} />
           <Route path="/" element={<Home setCart={setCart} cart={cart}/>}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login setIsAdmin={setIsAdmin} />}></Route>
+          <Route path="/login" element={<Login setIsAdmin={setIsAdmin} setLogin={setLogin} />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
           <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} />}></Route>
           <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />}></Route>
