@@ -1,0 +1,39 @@
+#container1 h1 {
+    color: #E93CAC;
+}
+
+
+#registerForm {
+    color: #2AD2C9;
+}
+
+#registerForm input {
+    width: 85%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    font-size: 35px;
+    opacity: .9;
+}
+
+#registerButton {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    font-size: 42px;
+    padding: 10px;
+    width: 81%;
+    margin: 10px;
+    border-radius: 5px;
+
+}
+
+.container button {
+        font-family: 'Press Start 2P';
+        background-color: #2AD2C9;
+        font-size: 42px;
+        padding: 10px;
+        width: 95%;
+        margin: 10px;
+        border-radius: 5px;
+}

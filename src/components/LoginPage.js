@@ -1,35 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { login } from "./axios";
+import '../loginPage.css'
 
 export const Login = ({setToken}) => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleUserLogin = async (event) => {
-    event.preventDefault();
-    const username = event.target[0].value
-    const password = event.target[1].value
-    useEffect(()=>{
-      login({username, password})
-      .then(results=>setToken(results.token))
-    },[])
+    event.preventDefault()
+    const getToken = async () => {
+      const { token } = await login({username, password})
+      setToken(token)
+    }
+    getToken()
   }
 
   return (
     <div className="container">
-      <h2>Login</h2>
+      <h1>Login</h1>
       <form id="login" className="user-login" onSubmit={event=>handleUserLogin(event)}>
-        <label>Username: </label>
-        <input
-          placeholder="Enter username"
-          required
-        /><br/>
-        <label>Password: </label>
-        <input
-          type="password"
-          placeholder="Enter password"
-          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-          required
-        /><br/>
-        <input type="submit" value="Login"/>
+        <fieldset>
+          <legend>Enter Username</legend>
+          <input
+            placeholder="Enter username"
+            onChange={({target: {value}})=>setUsername(value)}
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Enter Password</legend>
+          <input
+            type="password"
+            placeholder="Enter password"
+            onChange={({target: {value}})=>setPassword(value)}
+            required
+          />
+        </fieldset>
+        <input id="logButton" type="submit" value="Login"/>
       </form>
     </div>
   );

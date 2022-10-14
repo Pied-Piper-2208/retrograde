@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-// import { storeCurrentUser, storeCurrentToken, clearCurrentToken, getCurrentToken, clearCurrentUser } from './auth';
+import '../registerPage.css'
 
 export const Register = (props) => {
 
@@ -59,52 +58,43 @@ export const Register = (props) => {
 
 
   return (
-    <div>
+    <div id="container1">
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        NAME
+      <form id="registerForm" onSubmit={handleSubmit}>
+      <fieldset>
+      <legend>Enter User Info</legend>
         <input
           type="text"
           placeholder="Enter username"
           onChange={(event) => {
             setNewUser(event.target.value);
-            console.log("New user set to ", event.target.value);
           }}
         ></input>
-
-        EMAIL
         <input
           type="text"
           placeholder="Enter email"
           onChange={(event) => {
             setNewEmail(event.target.value);
-            console.log("New email set to ", event.target.value);
           }}
         ></input>
-
-
-        PASSWORD
+        </fieldset>
+        <fieldset>
+      <legend>Select Password</legend>
         <input
           id="password"
           type="password"
           placeholder="Enter password"
           onChange={(event) => {
             setNewPassword(event.target.value);
-            console.log(event.target.value);
           }}
         ></input>
-        CONFIRM PASSWORD
         <input
           id="confirmpassword"
           type="password"
           placeholder="Confirm password"
-          //onChange={(event) => {
-          //  setNewPassword(event.target.value);
-           // console.log(event.target.value);
-          //}}
           ></input>
-        <button type="text">Register</button>
-        
+        </fieldset>
+        <button id="registerButton" type="text">Sign Up!</button>
       </form>
     </div>
   );

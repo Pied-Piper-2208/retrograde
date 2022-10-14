@@ -1,5 +1,4 @@
 function storeCurrentUser(user) {
-    console.log('storeCurrentUser', user);
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
   
@@ -51,7 +50,6 @@ function storeCurrentUser(user) {
   }
 
   function clearCurrentRoutine() {
-    console.log("Inside clearCurrentRoutine");
     localStorage.removeItem('currentRoutine');
 
   }

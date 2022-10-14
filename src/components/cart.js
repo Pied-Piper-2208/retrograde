@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 import { deleteFromCart } from "./axios";
+import '../cart.css'
 
 export const Cart = ({ cart, setCart }) => {
 
@@ -33,21 +34,21 @@ export const Cart = ({ cart, setCart }) => {
         <>
             {cart.length?<>
                 <h1>Your Cart:</h1>
-                {cart.map(({id, name, price, image, quantity, orderId}) => {
-                    return (
-                        <div className='CartItem' key={id}>
-                            <img className="GamePhoto" src={image} alt={name}/>
-                            <h3>{name}</h3>
-                            <div>${price*quantity}</div>
-                            <span>Quantity:</span> <input onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
-                            <button onClick={()=>handleDelete(id, orderId)}>Remove</button>
-                        </div>
-                    )
-                })}
+                <div className='CartContainer'>
+                    {cart.map(({id, name, price, image, quantity, orderId}) => {
+                        return (
+                            <div className='CartItem' key={id}>
+                                <img className="CartGamePhoto" src={image} alt={name}/>
+                                <h3 className="CartGameName">{name}</h3>
+                                <div>${price*quantity}</div>
+                                <span className="Quantity">Quantity:</span><input className="QuantityInput" onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
+                                <button onClick={()=>handleDelete(id, orderId)}>Remove</button>
+                            </div>
+                        )
+                    })}
+                </div>
                 <h3>Total: ${total}</h3>
-                <Link to="/Checkout">
-                  <button>Proceed to Checkout</button>
-                </Link>
+                <Link to="/Checkout" id="CartCheckoutLink">Proceed to Checkout</Link>
             </>:<h2 id="EmptyCart">Your Cart Is Empty!</h2>}
         </>
     )
