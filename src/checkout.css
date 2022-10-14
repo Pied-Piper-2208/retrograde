@@ -1,0 +1,51 @@
+#customerInfo {
+    color: #fff;
+}
+
+ fieldset {
+    border: 8px #2AD2C9 dotted;
+    width: 75%;
+}
+
+
+
+#forms input {
+    width: 85%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    font-size: 35px;
+    opacity: .9;
+}
+
+#forms H1 {
+    color: #E93CAC;
+
+}
+
+#customerInfo, #shippingAdress, #payment {
+    color: #2AD2C9;
+}
+
+#purchaseButton {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    font-size: 42px;
+    padding: 10px;
+    width: 95%;
+    margin: 10px;
+    border-radius: 5px;
+
+}
+
+#navs {
+    display: flex;
+    flex-direction: column;
+}
+
+#backLink {
+    color: red;
+    font-size: 22px;
+    flex-wrap: wrap;
+}
