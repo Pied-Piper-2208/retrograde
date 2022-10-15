@@ -1,12 +1,14 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import '../checkout.css'
+import { Link, useNavigate } from "react-router-dom"
+import '../css/checkout.css'
 
 
 export const Checkout = () => {
+    const nav = useNavigate()
+
     const handlePurchase = () => {
         alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!")
-        window.location = '/'
+        nav('/')
     }
 
     return (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {BrowserRouter as Router, Link} from 'react-router-dom'
 import { deleteFromCart } from "./axios"
-import '../cart.css'
+import '../css/cart.css'
 
 export const Cart = ({ cart, setCart, token }) => {
     const [total, setTotal] = useState(0)

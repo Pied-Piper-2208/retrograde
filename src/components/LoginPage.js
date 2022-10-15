@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { login } from "./axios"
-import '../loginPage.css'
+import '../css/loginPage.css'
 
 export const Login = ({setToken}) => {
   const [username, setUsername] = useState('')

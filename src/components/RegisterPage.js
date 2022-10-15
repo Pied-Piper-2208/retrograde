@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react"
-import '../registerPage.css'
+import '../css/registerPage.css'
 
 export const Register = (props) => {
 
