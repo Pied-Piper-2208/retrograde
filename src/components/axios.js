@@ -27,13 +27,10 @@ export const getOrderById = async () => {
     return response.data
 }
 
-export const deleteFromCart = async (orderId) => {
-    const response = await axios.delete(`${BASE_URL}/orders/${orderId}`)
-    return response.data
-}
+export const deleteFromCart = async (orderId, token) => await axios.delete(`${BASE_URL}/orders/${orderId}`, { headers: {'Authorization': `Bearer ${token}`}})
 
-export const addToCart = async (gameId, userId) => {
-    const response = await axios.post(`${BASE_URL}/orders`, {gameId, userId})
+export const addToCart = async (gameId, token) => {
+    const response = await axios.post(`${BASE_URL}/orders`, {gameId}, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data
 }
 

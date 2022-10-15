@@ -35,7 +35,7 @@ const getUser = async ({ username, password }) => {
 const getUserById = async (userId) => {
   try {
     const { rows: [user] } = await client.query(`
-      SELECT username, "emailAddress", "isAdmin"
+      SELECT id, username, "emailAddress", "isAdmin"
       FROM users
       WHERE id=$1;
     `, [userId])
@@ -63,7 +63,7 @@ const getUserByUsername = async (userName) => {
 const getAllUsers = async () => {
   try {
     const { rows } = await client.query(`
-      SELECT username, "isAdmin", "emailAddress", id
+      SELECT id, username, "isAdmin", "emailAddress"
       FROM users;
     `)
     return rows

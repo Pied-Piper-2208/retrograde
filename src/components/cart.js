@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import {BrowserRouter as Router, Link} from 'react-router-dom'
-import { deleteFromCart } from "./axios";
+import { deleteFromCart } from "./axios"
 import '../cart.css'
 
-export const Cart = ({ cart, setCart }) => {
-
+export const Cart = ({ cart, setCart, token }) => {
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
@@ -22,12 +21,9 @@ export const Cart = ({ cart, setCart }) => {
         }))
     }
 
-    const loggedInUser = localStorage.getItem("currentUser");
-    const userData = JSON.parse(loggedInUser);
-
     const handleDelete = async (gameId, orderId) => {
         setCart(cart.filter(({id})=>id!==gameId))
-        userData ? deleteFromCart(orderId) : null;
+        if(token) deleteFromCart(orderId, token)
     }
 
     return (
@@ -59,4 +55,4 @@ export const Cart = ({ cart, setCart }) => {
             </>:<h2 id="EmptyCart">Your Cart Is Empty!</h2>}
         </>
     )
-};
+}

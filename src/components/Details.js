@@ -1,15 +1,12 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { addToCart, getGameById } from "./axios";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
-export const Details = ({cart, setCart}) => {
-    const {id} = useParams();
-    const [game, setGame] = useState({});
+import { addToCart, getGameById } from "./axios"
 
-    const loggedInUser = localStorage.getItem("currentUser");
-    const userData = JSON.parse(loggedInUser);
+export const Details = ({cart, setCart, token}) => {
+    const {id} = useParams()
+    const [game, setGame] = useState({})
 
     const handleClick = async () => {
         let inCart = false
@@ -19,8 +16,8 @@ export const Details = ({cart, setCart}) => {
 
         if (!inCart) {
             game.quantity = 1
-            setCart([...cart, game]);
-            userData ? await addToCart(game.id, userData.id) : null;
+            setCart([...cart, game])
+            if(token) await addToCart(game.id, token)
             alert(`Added ${game.name} to your cart!`)
         }
         else

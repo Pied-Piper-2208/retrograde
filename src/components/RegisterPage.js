@@ -1,32 +1,30 @@
-import React from "react";
-import { useState } from "react";
+import React from "react"
+import { useState } from "react"
 import '../registerPage.css'
 
 export const Register = (props) => {
 
-  const [newUser, setNewUser] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+  const [newUser, setNewUser] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [newEmail, setNewEmail] = useState("")
 
 
 
-  const setToken = props.setToken;
-  const setCurrentUser = props.setCurrentUser;
+  const setToken = props.setToken
+  const setCurrentUser = props.setCurrentUser
   
   const handleSubmit = async (event) => {
 
-    const path = process.env.REACT_APP_BASE_URL;
+    const path = process.env.REACT_APP_BASE_URL
 
     event.preventDefault();
 
     if (document.getElementById("password").value !== document.getElementById("confirmpassword").value) {
-      alert("Passwords do not match...try again");
-      document.getElementById("password").value = "";
-      document.getElementById("confirmpassword").value = "";
-      document.getElementById("password").focus();
+      alert("Passwords do not match...try again")
+      document.getElementById("password").value = ""
+      document.getElementById("confirmpassword").value = ""
+      document.getElementById("password").focus()
     } else {
-         
-      console.log("NAME AND PASSWORD", newUser, newPassword);
       const response = await fetch("http://localhost:4000/api/users/register", {
         method: "POST",
         headers: {
@@ -39,15 +37,15 @@ export const Register = (props) => {
             emailAddress: newEmail
           },
         ),
-      });
-      const data = await response.json();
+      })
+      const data = await response.json()
    
       if (data.success) {
-        alert(data.message);
-        setToken(data.token);
-        setCurrentUser(data.user.username);
-        storeCurrentToken(data.token);
-        storeCurrentUser(data.user);
+        alert(data.message)
+        setToken(data.token)
+        setCurrentUser(data.user.username)
+        storeCurrentToken(data.token)
+        storeCurrentUser(data.user)
       } else {
         alert("error occurred during registration process")
       }
@@ -65,14 +63,14 @@ export const Register = (props) => {
           type="text"
           placeholder="Enter username"
           onChange={(event) => {
-            setNewUser(event.target.value);
+            setNewUser(event.target.value)
           }}
         ></input>
         <input
           type="text"
           placeholder="Enter email"
           onChange={(event) => {
-            setNewEmail(event.target.value);
+            setNewEmail(event.target.value)
           }}
         ></input>
         </fieldset>
@@ -83,7 +81,7 @@ export const Register = (props) => {
           type="password"
           placeholder="Enter password"
           onChange={(event) => {
-            setNewPassword(event.target.value);
+            setNewPassword(event.target.value)
           }}
         ></input>
         <input
@@ -95,5 +93,5 @@ export const Register = (props) => {
         <button id="registerButton" type="text">Sign Up!</button>
       </form>
     </div>
-  );
-};
+  )
+}

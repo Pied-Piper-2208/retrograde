@@ -35,7 +35,8 @@ ordersRouter.delete('/:orderId', async (req, res) => {
 })
 
 ordersRouter.post('/', async (req, res) => {
-    const { gameId, userId } = req.body
+    const { gameId } = req.body
+    const { id: userId } = req.user
     try {
         const { id } = await createOrder({userId, isOpen: true});
         const cartItem = await createOrders_Games({orderId: id, gameId});

@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 import '../checkout.css'
 
 
 export const Checkout = () => {
     const handlePurchase = () => {
-        alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!");
+        alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!")
         window.location = '/'
     }
 
