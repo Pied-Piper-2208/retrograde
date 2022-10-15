@@ -60,32 +60,55 @@ body {
 .GameQuickInfo {
   font-family: 'Press Start 2P', cursive;
   color: white;
-  font-size: large;
+  font-size: 24px;
+  font-weight: bold;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: flex-start;
+}
+
+#linkHolder {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: baseline;
+
+
+
+}
+
+
+
+.GameDescription {
+  color: white;
 }
 
 .DetailsGameName {
   font-family: 'Press Start 2P', cursive;
-  color: navajowhite;
+  color: #E93CAC;
   font-size: 25px;
   font-weight: bolder;
   padding-bottom: 15px;
 }
 
 .DetailsGamePrice {
-  margin-left: 20px;
-  font-size: 25px;
+  color: #E93CAC;
+  margin-top: 12px;
+  font-size: larger;
+  font-weight: bolder;
+  
+
 }
 
 .DetailsLink {
   color: black;
-  margin: 15px 28px 0px 0px;
+  font-family: 'Press Start 2P';
+  font-size: 26px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
   text-decoration: none;
   background-color: #2AD2C9;
   text-shadow: none;
-  padding: 0 5px 0 5px;
 }
 
 .MoreInfo {
@@ -97,10 +120,30 @@ body {
 
 .GameDetailsImage {
   border: 2px solid black;
-  width: 28%;
-  height: 28%;
-  float: left;
-  margin-right: 15px;
+  width: 360px;
+  height: 550px;
+  margin-right: 12px;
+  margin-left: 32px;}
+
+
+
+#legend2 {
+  color: #2AD2C9;
+  display: flex;
+  flex-direction: row;
+}
+
+#detailsContainer {
+  color: #2AD2C9;
+  display: flex;
+  flex-direction: row;
+}
+
+#fset {
+  color: #2AD2C9;
+  display: flex;
+  flex-direction: row;
+
 }
 
 .topnav {

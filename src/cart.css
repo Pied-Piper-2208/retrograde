@@ -21,6 +21,7 @@ h1 {
     width: 30px;
 }
 
+
 #CartCheckoutLink {
     color: black;
     margin: 15px 28px 0px 0px;
@@ -32,4 +33,6 @@ h1 {
 
 .CartGameName {
     margin-bottom: none;
+    color: #2AD2C9;
+    font-size: larger;
 }
