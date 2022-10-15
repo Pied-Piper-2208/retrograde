@@ -34,16 +34,18 @@ export const Details = ({cart, setCart}) => {
 
     return(
         <div>
-            <div key={game.id}>
-                <img className="GameDetailsImage" src={game.image} alt={game.name}/>
+            <div id="detailsContainer" key={game.id}>
+            <fieldset id ="fset"><legend id="legend2">{game.name}</legend>
                 <div className="GameQuickInfo">
-                    <div className="DetailsGameName">{game.name}</div>
-                    <div className="DetailsGamePrice">${game.price}</div>
                     <div className="GameDescription">{game.description}</div>
-                    <Link className="DetailsLink" to ='../'>Back to Home</Link>
-                    <br></br>
-                    <Link className="DetailsLink" to="/cart" onClick={() => handleClick()}>Add to Cart</Link>
+                    <div className="DetailsGamePrice">Price: ${game.price}</div>
+                    <div id="linkHolder">
+                        <Link className="DetailsLink" to="/cart" onClick={() => handleClick()}>Add to Cart</Link>
+                        <Link className="DetailsLink" to ='../'>Back to Home</Link>
+                    </div>
                 </div>
+                <img className="GameDetailsImage" src={game.image} alt={game.name}/>
+                </fieldset>
             </div>
         </div>
     )

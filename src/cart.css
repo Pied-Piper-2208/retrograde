@@ -10,8 +10,27 @@ h1 {
 }
 
 .CartItem {
-    padding: 10px 0px 20px 10px;
+    color:#2AD2C9;
 }
+
+#priceContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.cartItemField {
+    padding: 100px 0px 20px 10px;
+    color:#2AD2C9;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+#fieldInCart {
+    border: 8px navajowhite dotted;
+    width: 90%;
+}
+
 
 .Quantity {
     font-size: medium;
@@ -20,6 +39,7 @@ h1 {
 .QuantityInput {
     width: 30px;
 }
+
 
 #CartCheckoutLink {
     color: black;
@@ -32,4 +52,53 @@ h1 {
 
 .CartGameName {
     margin-bottom: none;
+    color: #2AD2C9;
+    font-size: larger;
+}
+
+
+#cartInput {
+    width: 20%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    font-size: 35px;
+    opacity: .9;
+}
+
+
+#cartItemField {
+    display: flex;
+    flex-direction: row;
+}
+
+#priceCart, #quanityCart, #pricePerUnit {
+    color:navajowhite;
+}
+
+#titleCart {
+    color: navajowhite;
+}
+
+#cartButton {
+    font-family: 'Press Start 2P';
+    background-color:  navajowhite;
+    font-size: 22px;
+    padding: 10px;
+    width: 95%;
+    margin: 10px;
+    border-radius: 5px;
+
+}
+
+#checkButton {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    font-size: 42px;
+    padding: 10px;
+    width: 95%;
+    margin: 10px;
+    border-radius: 5px;
+
 }
