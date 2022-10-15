@@ -17,14 +17,14 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
             .then(results=>setAllGames(results))
         }
         getGamesAsync()
-    },[])
+    },[focusedGameId, isCreatingGame, options])
 
     useEffect(()=>{
         getAllUsers(token)
         .then(results=>setUsers(results))
     },[])
 
-    const postAndOptions = (id, option = "default") => {
+    const postAndOptions = (id = -1, option = "default") => {
         setIsCreatingGame(false)
         setFocusedGameId(id)
         setOptions(option)
@@ -92,7 +92,7 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
             <div id="DeleteGame">
                 <b>Are you sure you want to delete this game?</b>
                 <div id="deletionConfirmation">
-                    <button onClick={()=>{deleteGame(token,id); postAndOptions()}}>Yes</button>
+                    <button onClick={()=>{postAndOptions(); deleteGame(token,id)}}>Yes</button>
                     <button onClick={()=>postAndOptions()}>No</button>
                 </div>
             </div>
