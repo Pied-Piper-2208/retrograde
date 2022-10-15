@@ -33,22 +33,29 @@ export const Cart = ({ cart, setCart }) => {
     return (
         <>
             {cart.length?<>
-                <h1>Your Cart:</h1>
-                <div className='CartContainer'>
-                    {cart.map(({id, name, price, image, quantity, orderId}) => {
-                        return (
-                            <div className='CartItem' key={id}>
-                                <img className="CartGamePhoto" src={image} alt={name}/>
-                                <h3 className="CartGameName">{name}</h3>
-                                <div>${price*quantity}</div>
-                                <span className="Quantity">Quantity:</span><input className="QuantityInput" onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
-                                <button onClick={()=>handleDelete(id, orderId)}>Remove</button>
+                <h1 id="cartTitle">Your Cart</h1>
+                {cart.map(({id, name, price, image, quantity, orderId}) => {
+                    return (
+                        <div className='CartItem' key={id}>
+                            <fieldset id="cartItemField"><legend>{name}</legend>
+                            <img className="GamePhotoInCart" src={image} alt={name}/>
+                            <div id="priceContainer">
+                                <fieldset ><legend id="titleCart">Financials</legend>
+                                    <div id="quanityCart">Quantity:</div>
+                                    <input id="cartInput" onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
+
+                                    <div id="pricePerUnit">Price: ${price*quantity}</div>                                    
+                                    <button id="cartButton" onClick={()=>handleDelete(id, orderId)}>Remove</button>
+                                </fieldset>
                             </div>
-                        )
-                    })}
-                </div>
-                <h3>Total: ${total}</h3>
-                <Link to="/Checkout" id="CartCheckoutLink">Proceed to Checkout</Link>
+                            </fieldset>
+                        </div>
+                    )
+                })}
+                <h3>Your Grand Total: ${total}</h3>
+                <Link to="/Checkout">
+                  <button>Proceed to Checkout</button>
+                </Link>
             </>:<h2 id="EmptyCart">Your Cart Is Empty!</h2>}
         </>
     )
