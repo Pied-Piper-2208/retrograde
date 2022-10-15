@@ -26,7 +26,10 @@ h1 {
     
 }
 
-
+#fieldInCart {
+    border: 8px navajowhite dotted;
+    width: 90%;
+}
 
 
 .Quantity {
@@ -80,7 +83,7 @@ h1 {
 
 #cartButton {
     font-family: 'Press Start 2P';
-    background-color: #2AD2C9;
+    background-color:  navajowhite;
     font-size: 22px;
     padding: 10px;
     width: 95%;
@@ -89,3 +92,13 @@ h1 {
 
 }
 
+#checkButton {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    font-size: 42px;
+    padding: 10px;
+    width: 95%;
+    margin: 10px;
+    border-radius: 5px;
+
+}

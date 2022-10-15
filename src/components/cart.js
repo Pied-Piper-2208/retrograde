@@ -40,7 +40,7 @@ export const Cart = ({ cart, setCart }) => {
                             <fieldset id="cartItemField"><legend>{name}</legend>
                             <img className="GamePhotoInCart" src={image} alt={name}/>
                             <div id="priceContainer">
-                                <fieldset ><legend id="titleCart">Financials</legend>
+                                <fieldset id="fieldInCart" ><legend id="titleCart">Financials</legend>
                                     <div id="quanityCart">Quantity:</div>
                                     <input id="cartInput" onChange={event => handleQuantity(event, id)} type='number' min="1" defaultValue={quantity} />
 
@@ -54,7 +54,7 @@ export const Cart = ({ cart, setCart }) => {
                 })}
                 <h3>Your Grand Total: ${total}</h3>
                 <Link to="/Checkout">
-                  <button>Proceed to Checkout</button>
+                  <button id="checkButton">Proceed to Checkout</button>
                 </Link>
             </>:<h2 id="EmptyCart">Your Cart Is Empty!</h2>}
         </>

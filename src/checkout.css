@@ -2,7 +2,7 @@
     color: #fff;
 }
 
- fieldset {
+fieldset {
     border: 8px #2AD2C9 dotted;
     width: 90%;
 }
@@ -23,6 +23,8 @@
     color: #E93CAC;
 
 }
+
+
 
 #customerInfo, #shippingAdress, #payment {
     color: #2AD2C9;
