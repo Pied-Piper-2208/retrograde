@@ -40,10 +40,10 @@ const App = () => {
       <div>
         <Routes>
           <Route path="/admin/*" element={<AdminPage user={user} token={token} />} />
-          <Route path="/" element={<Home cart={cart} setCart={setCart} />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/register" element={<Register setToken={setToken} />}></Route>
           <Route path="/login" element={<Login setToken={setToken} />}></Route>
-          <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>
+          <Route path="/checkout" element={<Checkout setCart={setCart} token={token} />}></Route>
           <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} token={token} />}></Route>
           <Route path="/cart" element={<Cart cart={cart} setCart={setCart} token={token} />}></Route>
         </Routes>
