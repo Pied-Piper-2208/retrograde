@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
-import { login } from "./axios";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { login } from "./axios"
 import '../loginPage.css'
 
 export const Login = ({setToken}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const nav = useNavigate()
 
   const handleUserLogin = async (event) => {
     event.preventDefault()
@@ -14,6 +16,7 @@ export const Login = ({setToken}) => {
       setToken(token)
     }
     getToken()
+    nav('/')
   }
 
   return (
@@ -40,5 +43,5 @@ export const Login = ({setToken}) => {
         <input id="logButton" type="submit" value="Login"/>
       </form>
     </div>
-  );
+  )
 }

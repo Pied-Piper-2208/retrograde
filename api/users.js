@@ -46,14 +46,14 @@ router.post('/login', async (req, res) => {
         })
         throw error
       }
-});
+})
 
 router.post('/register', async (req, res) => {
 
-    const { username, password, emailAddress } = req.body;
+    const { username, password, emailAddress } = req.body
   
     try {
-      const _user = await getUserByUsername(username);
+      const _user = await getUserByUsername(username)
       
       if(_user) {
         res.send({
@@ -64,7 +64,7 @@ router.post('/register', async (req, res) => {
 
       const user = await createUser({username, password, emailAddress});
       const token = jwt.sign({id: user.id, username}, process.env.JWT_SECRET, {expiresIn: '1w'});
-      res.send({success: true, user, message: "Thank you for signing up", token});
+      res.send({success: true, user, message: "Thank you for signing up", token})
     } catch (error) {
       res.send({
         name: 'TryCatchFailure',
@@ -84,4 +84,4 @@ router.get('/', async (req, res) => {
     }
 })
 
-module.exports = router;
+module.exports = router

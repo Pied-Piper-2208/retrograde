@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
+
 import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './components'
 import { getUserCart } from './components/axios'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("EpicGamerTokenForRetrograde"))
-  
-  const [cart, setCart] = useState([]);
-  console.log(token)
+  const [cart, setCart] = useState([])
+  const [userName, setUsername] = useState('')
 
   useEffect(()=>{
     token ? getUserCart(token).then(results => setCart(results.map(
@@ -30,6 +30,7 @@ const App = () => {
           <Link to="/checkout">Checkout</Link>
           {!token ? <Link to="/login">Login</Link> : <Link to='../' onClick={()=>logout()}>Logout</Link>}
           {!token ? <Link to="/register">Register</Link> : null}
+          {userName ? <h1>userName</h1> : null}
         </nav>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>
