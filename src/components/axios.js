@@ -46,8 +46,8 @@ export const addToCart = async (gameId, userId) => {
     return response.data
 }
 
-export const getUserCart = async (userId) => {
-    const response = await axios.get(`${BASE_URL}/orders/${userId}`)
+export const getUserCart = async (token) => {
+    const response = await axios.get(`${BASE_URL}/orders`, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data
 }
 

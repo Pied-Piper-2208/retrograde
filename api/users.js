@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const { getUserByUsername, createUser, getAllUsers} = require('../db')
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password){
-      next({
+      res.send({
         name: "MissingCredentialsError",
         message: "Please supply both a username and password"
       })
@@ -19,7 +19,7 @@ router.post('/login', async (req, res, next) => {
       const user = await getUserByUsername(username);
 
       if(!user){
-        next({ 
+        res.send({ 
           name: 'NoSuchUserError', 
           message: 'There is no user by that name. Please register'
         })
@@ -29,7 +29,7 @@ router.post('/login', async (req, res, next) => {
       const isValid = await bcrypt.compare(password, hashedPassword)
 
       if (!isValid){
-        next({ 
+        res.send({ 
           name: 'IncorrectCredentialsError', 
           message: 'Username or password is incorrect'
         })
@@ -39,7 +39,7 @@ router.post('/login', async (req, res, next) => {
       res.send({ success: true, user, message: "you're logged in!", token })
 
       } catch(error) {
-        next({
+        res.send({
           name: 'TryCatchFailure',
           message: 'Something happened in the try/catch',
           error
@@ -48,11 +48,7 @@ router.post('/login', async (req, res, next) => {
       }
 });
 
-router.post('/login', async (req, res) => {
-    res.send(req.body)
-})
-
-router.post('/register', async (req, res, next) => {
+router.post('/register', async (req, res) => {
 
     const { username, password, emailAddress } = req.body;
   
@@ -60,7 +56,7 @@ router.post('/register', async (req, res, next) => {
       const _user = await getUserByUsername(username);
       
       if(_user) {
-        next({
+        res.send({
           name: 'UserExistsError',
           message: 'A user by that username already exists'
         });
@@ -70,7 +66,7 @@ router.post('/register', async (req, res, next) => {
       const token = jwt.sign({id: user.id, username}, process.env.JWT_SECRET, {expiresIn: '1w'});
       res.send({success: true, user, message: "Thank you for signing up", token});
     } catch (error) {
-      next({
+      res.send({
         name: 'TryCatchFailure',
         message: 'Something happened in the try/catch',
         error
@@ -78,10 +74,6 @@ router.post('/register', async (req, res, next) => {
       throw error
     }
 });
-
-router.post('/register', async (req, res) => {
-  res.send(req.body)
-})
   
 router.get('/', async (req, res) => {
     try {

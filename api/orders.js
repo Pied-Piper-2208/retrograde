@@ -1,10 +1,10 @@
 const ordersRouter = require('express').Router();
 const {  getCartByUserId, orderIsOpenFalse, deleteGameFromCart, createOrder, createOrders_Games } = require('../db');
 
-ordersRouter.get('/:userId', async (req, res) => {
-    const { userId } = req.params
+ordersRouter.get('/', async (req, res) => {
+    const { id } = req.user
     try {
-        const order = await getCartByUserId(userId)
+        const order = await getCartByUserId(id)
         res.send(order)
     } catch (error) {
         console.error('Error getting order!')

@@ -1,42 +1,35 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './components'
 import { getUserCart } from './components/axios'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("EpicGamerTokenForRetrograde"))
-  const navigate = useNavigate();
   
   const [cart, setCart] = useState([]);
+  console.log(token)
 
   useEffect(()=>{
-    login ? getUserCart(userData.id).then(results => setCart(results.map(
+    token ? getUserCart(token).then(results => setCart(results.map(
         result=>{result.quantity = 1; return result}))) : setCart([]);
-  }, [login])
+  }, [token])
 
-  const logout = (event) => {
-    event.preventDefault();
-
-    localStorage.removeItem("currentUser");
-    localStorage.removeItem("currentToken");
-    
-    setIsAdmin(false);
-    setLogin(false);
-
-    navigate('/');
-  };
+  const logout = () => {
+    setToken('')
+    localStorage.removeItem('EpicGamerTokenForRetrograde')
+  }
 
   return (
     <div>
       <div className="topnav">
         <nav>
           <Link to="/">Home</Link>
-          {isAdmin ? <Link to="/admin">Admin Page</Link> : null}
+          {true ? <Link to="/admin">Admin Page</Link> : null}
           <Link to="/cart">My Cart</Link>
           <Link to="/checkout">Checkout</Link>
-          {!login ? <Link to="/login">Login</Link> : <Link onClick={event=>logout(event)}>Logout</Link>}
-          <Link to="/register">Register</Link>
+          {!token ? <Link to="/login">Login</Link> : <Link to='../' onClick={()=>logout()}>Logout</Link>}
+          {!token ? <Link to="/register">Register</Link> : null}
         </nav>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>

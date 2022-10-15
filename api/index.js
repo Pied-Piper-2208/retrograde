@@ -3,11 +3,12 @@ const {getUserById} = require('../db')
 const jwt = require('jsonwebtoken')
 
 apiRouter.use(async (req, res, next) => {
-    const prefix = 'Token '
+    const prefix = 'Bearer '
     const auth = req.header('Authorization')
 
-    if (!auth) next()
-    if (auth.startsWith(prefix)) {
+    if (!auth) 
+        next()
+    else if (auth.startsWith(prefix)) {
         const token = auth.slice(prefix.length)
         try {
             const { id } = jwt.verify(token, process.env.JWT_SECRET)
@@ -20,10 +21,11 @@ apiRouter.use(async (req, res, next) => {
             next({ name, message })
         }
     }
-    next({
-        name: 'AuthorizationHeaderError',
-        message: `Authorization token must start with ${ prefix }`
-    })
+    else
+        next({
+            name: 'AuthorizationHeaderError',
+            message: `Authorization token must start with ${ prefix }`
+        })
 })
 
 const gamesRouter = require('./games')
