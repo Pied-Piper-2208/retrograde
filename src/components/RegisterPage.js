@@ -11,8 +11,6 @@ export const Register = (props) => {
 
 
   const setToken = props.setToken;
-  const token = props.token;
-  const currentUser = props.currentUser;
   const setCurrentUser = props.setCurrentUser;
   
   const handleSubmit = async (event) => {

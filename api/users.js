@@ -3,7 +3,7 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
-const { getUserByUsername, createUser, getAllUsers} = require('../db')
+const { getUserByUsername, createUser, getAllUsers, getUserById} = require('../db')
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -73,12 +73,20 @@ router.post('/register', async (req, res) => {
       })
       throw error
     }
-});
-  
+})
+
+router.get('/me', async (req, res) => {
+  try {
+    res.send(req.user)
+  } catch (error) {
+    throw error
+  }
+})
+
 router.get('/', async (req, res) => {
     try {
       const allUsers = await getAllUsers()
-      res.send(allUsers)
+      res.send(req.user.isAdmin ? allUsers : {})
     } catch (error) {
       throw error
     }

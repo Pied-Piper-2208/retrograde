@@ -11,23 +11,14 @@ export const getGameById = async (id) => {
     return response.data
 }
 
-export const createGame = async (params) => {
-    const response = await axios.post(`${BASE_URL}/games`, params)
-    return response.data
-}
+export const createGame = async (token, params) => await axios.post(`${BASE_URL}/games`, params, { headers: {'Authorization': `Bearer ${token}`}})
 
-export const editGame = async ({id, ...params}) => {
-    const response = await axios.patch(`${BASE_URL}/games/${id}`, params)
-    return response.data
-}
+export const editGame = async (token,{id, ...params}) => await axios.patch(`${BASE_URL}/games/${id}`, params, { headers: {'Authorization': `Bearer ${token}`}})
 
-export const deleteGame = async (id) => {
-    const response = await axios.delete(`${BASE_URL}/games/${id}`)
-    return response.data
-}
+export const deleteGame = async (token, id) => await axios.delete(`${BASE_URL}/games/${id}`, { headers: {'Authorization': `Bearer ${token}`}})
 
-export const getAllUsers = async () => {
-    const response = await axios.get(`${BASE_URL}/users`)
+export const getAllUsers = async (token) => {
+    const response = await axios.get(`${BASE_URL}/users`, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data
 }
 
@@ -53,5 +44,10 @@ export const getUserCart = async (token) => {
 
 export const login = async (username, password) => {
     const response = await axios.post(`${BASE_URL}/users/login`, {username, password})
+    return response.data
+}
+
+export const me = async (token) => {
+    const response = await axios.get(`${BASE_URL}/users/me`, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data
 }

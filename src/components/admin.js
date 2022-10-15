@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react"
-import { Link, Route, Routes } from "react-router-dom"
+import { Link, Route, Routes, useNavigate } from "react-router-dom"
 import { createGame, deleteGame, editGame, getAllGames, getAllUsers } from "./axios"
 
-export const AdminPage = () => {
+export const AdminPage = ({user: {isAdmin}, token}) => {
     const [allGames, setAllGames] = useState([])
     const [users, setUsers] = useState([])
     const [options, setOptions] = useState("default")
-    const [focusedGameId, setFocusedGameId] = useState(-1)
-    const [updatedGame, setUpdatedGame] = useState({})
+    const [focusedGameId, setFocusedGameId] = useState()
     const [isCreatingGame, setIsCreatingGame] = useState(false)
+    const nav = useNavigate()
 
     useEffect(()=>{
+        if(!isAdmin) nav('/')
         const getGamesAsync = async () => {
             await getAllGames()
             .then(results=>setAllGames(results))
         }
         getGamesAsync()
-    },[updatedGame])
+    },[])
 
     useEffect(()=>{
-        getAllUsers()
+        getAllUsers(token)
         .then(results=>setUsers(results))
     },[])
 
     const postAndOptions = (id, option = "default") => {
+        setIsCreatingGame(false)
         setFocusedGameId(id)
         setOptions(option)
     }
@@ -61,7 +63,7 @@ export const AdminPage = () => {
                 image: event.target[3].value,
                 description: event.target[4].value
             }
-            setUpdatedGame(editGame({id: game.id, ...params}))
+            editGame(token,{id: game.id, ...params})
             postAndOptions()
         }
         return (
@@ -90,7 +92,7 @@ export const AdminPage = () => {
             <div id="DeleteGame">
                 <b>Are you sure you want to delete this game?</b>
                 <div id="deletionConfirmation">
-                    <button onClick={()=>{setUpdatedGame(deleteGame(id)); postAndOptions()}}>Yes</button>
+                    <button onClick={()=>{deleteGame(token,id); postAndOptions()}}>Yes</button>
                     <button onClick={()=>postAndOptions()}>No</button>
                 </div>
             </div>
@@ -98,6 +100,8 @@ export const AdminPage = () => {
     }
 
     const NewGame = () => {
+        setFocusedGameId()
+        
         const submit = (event) => {
             event.preventDefault()
             const params = {
@@ -107,7 +111,7 @@ export const AdminPage = () => {
                 image: event.target[3].value,
                 description: event.target[4].value
             }
-            setUpdatedGame(createGame(params))
+            createGame(token,params)
             setIsCreatingGame(false)
         }
 
@@ -164,7 +168,7 @@ export const AdminPage = () => {
                     <hr/>
                     {users.map(user=>{
                         return (
-                            <div>
+                            <div key={user.id}>
                                 {user.username}<br/>
                                 {user.emailAddress}<hr/>
                             </div>

@@ -127,4 +127,4 @@ export const Checkout = () => {
         </div>
         </>
     )
-};
+}

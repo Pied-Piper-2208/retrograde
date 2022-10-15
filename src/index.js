@@ -3,20 +3,24 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
 import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './components'
-import { getUserCart } from './components/axios'
+import { getUserCart, me } from './components/axios'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("EpicGamerTokenForRetrograde"))
   const [cart, setCart] = useState([])
-  const [userName, setUsername] = useState('')
+  const [user, setUser] = useState({})
 
   useEffect(()=>{
-    token ? getUserCart(token).then(results => setCart(results.map(
-        result=>{result.quantity = 1; return result}))) : setCart([]);
+    if(!token) return
+    getUserCart(token)
+    .then(results => setCart(results.map(result=>{result.quantity = 1; return result})))
+    me(token)
+    .then(result=>setUser(result))
   }, [token])
 
   const logout = () => {
     setToken('')
+    setUser({})
     localStorage.removeItem('EpicGamerTokenForRetrograde')
   }
 
@@ -25,19 +29,18 @@ const App = () => {
       <div className="topnav">
         <nav>
           <Link to="/">Home</Link>
-          {true ? <Link to="/admin">Admin Page</Link> : null}
+          {user.isAdmin ? <Link to="/admin">Admin Page</Link> : null}
           <Link to="/cart">My Cart</Link>
           <Link to="/checkout">Checkout</Link>
           {!token ? <Link to="/login">Login</Link> : <Link to='../' onClick={()=>logout()}>Logout</Link>}
-          {!token ? <Link to="/register">Register</Link> : null}
-          {userName ? <h1>userName</h1> : null}
+          {!token ? <Link to="/register">Register</Link> : <Link>{user.username}</Link>}
         </nav>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>
       <div>
         <Routes>
-          <Route path="/admin/*" element={<AdminPage />} />
-          <Route path="/" element={<Home setCart={setCart} cart={cart}/>}></Route>
+          <Route path="/admin/*" element={<AdminPage user={user} token={token} />} />
+          <Route path="/" element={<Home cart={cart} setCart={setCart} />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login setToken={setToken} />}></Route>
           <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart}/>}></Route>

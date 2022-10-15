@@ -23,6 +23,7 @@ gamesRouter.get('/:id', async (req, res) => {
 })
 
 gamesRouter.patch('/:id', async (req, res) => {
+    if(!req.user.isAdmin) res.send({error:"You aren't an admin!"})
     const { id } = req.params
     const params = req.body
     try {
@@ -35,6 +36,7 @@ gamesRouter.patch('/:id', async (req, res) => {
 })
 
 gamesRouter.delete('/:id', async (req, res) => {
+    if(!req.user.isAdmin) res.send({error:"You aren't an admin!"})
     const { id } = req.params
     try {
         const game = await removeGame(id)
@@ -46,6 +48,7 @@ gamesRouter.delete('/:id', async (req, res) => {
 })
 
 gamesRouter.post('/', async (req, res) => {
+    if(!req.user.isAdmin) res.send({error:"You aren't an admin!"})
     try {
         const game = await createGame(req.body)
         res.send(game)
