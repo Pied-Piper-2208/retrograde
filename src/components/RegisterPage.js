@@ -1,96 +1,68 @@
-import React from "react"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+import { register } from "./axios"
+
 import '../css/registerPage.css'
 
-export const Register = (props) => {
+export const Register = ({setToken}) => {
+  const nav = useNavigate()
 
-  const [newUser, setNewUser] = useState("")
-  const [newPassword, setNewPassword] = useState("")
-  const [newEmail, setNewEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [email, setEmail] = useState("")
 
-
-
-  const setToken = props.setToken
-  const setCurrentUser = props.setCurrentUser
-  
   const handleSubmit = async (event) => {
+    event.preventDefault()
 
-    const path = process.env.REACT_APP_BASE_URL
-
-    event.preventDefault();
-
-    if (document.getElementById("password").value !== document.getElementById("confirmpassword").value) {
-      alert("Passwords do not match...try again")
-      document.getElementById("password").value = ""
-      document.getElementById("confirmpassword").value = ""
-      document.getElementById("password").focus()
-    } else {
-      const response = await fetch("http://localhost:4000/api/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-          {
-            username: newUser,
-            password: newPassword,
-            emailAddress: newEmail
-          },
-        ),
-      })
-      const data = await response.json()
-   
-      if (data.success) {
-        alert(data.message)
-        setToken(data.token)
-        setCurrentUser(data.user.username)
-        storeCurrentToken(data.token)
-        storeCurrentUser(data.user)
-      } else {
-        alert("error occurred during registration process")
-      }
+    if(password!==confirmPassword){
+      alert("Passwords do not match!")
+      return
     }
-  };
+    const data = await register(username, password, email)
+    if(!data.token){
+      alert(data.message)
+      return
+    }
+    setToken(data.token)
+    nav("/")
+  }
 
 
   return (
     <div id="container1">
       <h1>Register</h1>
-      <form id="registerForm" onSubmit={handleSubmit}>
-      <fieldset>
-      <legend>Enter User Info</legend>
-        <input
-          type="text"
-          placeholder="Enter username"
-          onChange={(event) => {
-            setNewUser(event.target.value)
-          }}
-        ></input>
-        <input
-          type="text"
-          placeholder="Enter email"
-          onChange={(event) => {
-            setNewEmail(event.target.value)
-          }}
-        ></input>
+      <form id="registerForm" onSubmit={event=>handleSubmit(event)}>
+        <fieldset>
+          <legend>Enter User Info</legend>
+          <input
+            placeholder="Enter username"
+            onChange={event => setUsername(event.target.value)}
+            required
+          />
+          <input
+            placeholder="Enter email"
+            onChange={event => setEmail(event.target.value)}
+            required
+          />
         </fieldset>
         <fieldset>
-      <legend>Select Password</legend>
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter password"
-          onChange={(event) => {
-            setNewPassword(event.target.value)
-          }}
-        ></input>
-        <input
-          id="confirmpassword"
-          type="password"
-          placeholder="Confirm password"
-          ></input>
+          <legend>Select Password</legend>
+          <input
+            type="password"
+            placeholder="Enter password"
+            onChange={event => setPassword(event.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            onChange={event => setConfirmPassword(event.target.value)}
+            required
+            />
         </fieldset>
-        <button id="registerButton" type="text">Sign Up!</button>
+        <input id="registerButton" type="submit" value="Sign Up!"/>
       </form>
     </div>
   )

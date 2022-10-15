@@ -44,6 +44,11 @@ export const login = async (username, password) => {
     return response.data
 }
 
+export const register = async (username, password, emailAddress) => {
+    const response = await axios.post(`${BASE_URL}/users/register`, {username, password, emailAddress})
+    return response.data
+}
+
 export const me = async (token) => {
     const response = await axios.get(`${BASE_URL}/users/me`, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data

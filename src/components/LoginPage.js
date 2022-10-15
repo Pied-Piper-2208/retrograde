@@ -10,12 +10,14 @@ export const Login = ({setToken}) => {
 
   const handleUserLogin = async (event) => {
     event.preventDefault()
-    const getToken = async () => {
-      const { token } = await login(username, password)
-      localStorage.setItem("EpicGamerTokenForRetrograde",token)
-      setToken(token)
+
+    const data = await login(username, password)
+    if(!data.token){
+      alert(data.message)
+      return
     }
-    getToken()
+    localStorage.setItem("EpicGamerTokenForRetrograde",data.token)
+    setToken(data.token)
     nav('/')
   }
 
