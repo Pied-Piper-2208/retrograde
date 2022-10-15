@@ -49,7 +49,7 @@ const getUserById = async (userId) => {
 const getUserByUsername = async (userName) => {
   try {
     const { rows: [user] } = await client.query(`
-      SELECT username
+      SELECT *
       FROM users
       WHERE username=$1;
     `, [userName])
