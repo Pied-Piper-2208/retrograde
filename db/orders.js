@@ -34,6 +34,25 @@ const getCartByUserId = async (userId) => {
     }
 }
 
+const getPurchaseHistoryByUserId = async (userId) => {
+    try {
+        const { rows } = await client.query(`
+            SELECT games.id AS id, name, price, image, "orderId"
+            FROM games
+            JOIN orders_games
+            ON games.id = orders_games."gameId"
+            JOIN orders
+            ON orders_games."orderId" = orders.id
+            WHERE orders."userId" = $1
+            AND orders."isOpen" = false;
+        `,[userId])
+        return rows
+    } catch (error) {
+        console.error('Error getting cart!')
+        throw error;
+    }
+}
+
 const deleteGameFromCart = async (orderId) => {
     try {
         await client.query(`
@@ -66,4 +85,4 @@ const orderIsOpenFalse = async (orderId) => {
 
 
 
-module.exports = { createOrder, getCartByUserId, orderIsOpenFalse, deleteGameFromCart };
+module.exports = { createOrder, getCartByUserId, orderIsOpenFalse, deleteGameFromCart, getPurchaseHistoryByUserId };

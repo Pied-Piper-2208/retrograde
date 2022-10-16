@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
-import { Home, Details, Cart, AdminPage, Checkout, Register, Login } from './components'
+import { Home, Details, Cart, AdminPage, Checkout, Register, Login, MyPage } from './components'
 import { getUserCart, me } from './components/axios'
 
 const App = () => {
@@ -33,19 +33,20 @@ const App = () => {
           <Link to="/cart">My Cart</Link>
           <Link to="/checkout">Checkout</Link>
           {!token ? <Link to="/login">Login</Link> : <Link to='../' onClick={()=>logout()}>Logout</Link>}
-          {!token ? <Link to="/register">Register</Link> : <Link>{user.username}</Link>}
+          {!token ? <Link to="/register">Register</Link> : <Link to="/me">{user.username}</Link>}
         </nav>
       </div>
       <h1 className="title">RETROGRADE PC GAMES</h1>
       <div>
         <Routes>
           <Route path="/admin/*" element={<AdminPage user={user} token={token} />} />
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/register" element={<Register setToken={setToken} />}></Route>
-          <Route path="/login" element={<Login setToken={setToken} />}></Route>
-          <Route path="/checkout" element={<Checkout setCart={setCart} token={token} />}></Route>
-          <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} token={token} />}></Route>
-          <Route path="/cart" element={<Cart cart={cart} setCart={setCart} token={token} />}></Route>
+          <Route path="/" element={<Home />}/>
+          <Route path="/register" element={<Register setToken={setToken} />}/>
+          <Route path="/login" element={<Login setToken={setToken} />}/>
+          <Route path="/checkout" element={<Checkout setCart={setCart} token={token} />}/>
+          <Route path="/games/:id" element={<Details cart={cart} setCart={setCart} token={token} />}/>
+          <Route path="/cart" element={<Cart cart={cart} setCart={setCart} token={token} />}/>
+          <Route path='/me' element={<MyPage token={token} />}/>
         </Routes>
       </div>
     </div>

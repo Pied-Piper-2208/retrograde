@@ -29,13 +29,20 @@ export const getOrderById = async () => {
 
 export const deleteFromCart = async (orderId, token) => await axios.delete(`${BASE_URL}/orders/${orderId}`, { headers: {'Authorization': `Bearer ${token}`}})
 
+export const completeOrder = async (orderId, token) => await axios.patch(`${BASE_URL}/orders/${orderId}`, { headers: {'Authorization': `Bearer ${token}`}})
+
 export const addToCart = async (gameId, token) => {
     const response = await axios.post(`${BASE_URL}/orders`, {gameId}, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data
 }
 
 export const getUserCart = async (token) => {
-    const response = await axios.get(`${BASE_URL}/orders`, { headers: {'Authorization': `Bearer ${token}`}})
+    const response = await axios.get(`${BASE_URL}/orders/cart`, { headers: {'Authorization': `Bearer ${token}`}})
+    return response.data
+}
+
+export const getUserPurchaseHistory = async (token) => {
+    const response = await axios.get(`${BASE_URL}/orders/history`, { headers: {'Authorization': `Bearer ${token}`}})
     return response.data
 }
 

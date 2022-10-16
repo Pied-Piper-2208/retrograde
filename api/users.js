@@ -68,7 +68,7 @@ router.post('/register', async (req, res) => {
         })
         return
       }
-console.log("bo")
+
       const user = await createUser(req.body);
       const token = jwt.sign({id: user.id, username}, process.env.JWT_SECRET, {expiresIn: '1w'});
       res.send({success: true, user, message: "Thank you for signing up", token})

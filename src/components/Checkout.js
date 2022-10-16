@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import '../css/checkout.css'
-import { deleteFromCart, getUserCart } from "./axios"
+import { completeOrder, getUserCart } from "./axios"
 
 
 export const Checkout = ({setCart, token}) => {
@@ -11,7 +11,7 @@ export const Checkout = ({setCart, token}) => {
         alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!")
         setCart([])
         const dbCart = await getUserCart(token)
-        dbCart.map(async ({orderId})=> await deleteFromCart(orderId, token))
+        dbCart.map(async ({orderId})=> await completeOrder(orderId, token))
         nav('/')
     }
 
