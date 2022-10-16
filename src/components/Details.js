@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-import { addToCart, getGameById } from "./axios"
+import { addToCart, getGameById, getUserCart } from "./axios"
 
 export const Details = ({cart, setCart, token}) => {
     const {id} = useParams()
@@ -15,9 +15,15 @@ export const Details = ({cart, setCart, token}) => {
                 inCart = true
 
         if (!inCart) {
-            game.quantity = 1
-            setCart([...cart, game])
-            if(token) await addToCart(game.id, token)
+            if(token) {
+                await addToCart(game.id, token)
+                const realCart = await getUserCart(token)
+                setCart(realCart.map(result=>{result.quantity = 1; return result}))
+            }
+            else{
+                game.quantity = 1
+                setCart([...cart, game])
+            }
             alert(`Added ${game.name} to your cart!`)
         }
         else

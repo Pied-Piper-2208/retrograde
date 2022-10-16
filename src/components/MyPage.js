@@ -8,7 +8,7 @@ export const MyPage = ({token}) => {
     useEffect(()=>{
         getUserPurchaseHistory(token)
         .then(results=>setPurchaseHistory(results))
-    })
+    },[])
 
     return (
         <div>
@@ -16,7 +16,7 @@ export const MyPage = ({token}) => {
             <hr/>
             {purchaseHistory.map(purchase=>{
                 return (
-                    <div>
+                    <div key={purchase.orderId}>
                         <img className="GameDetailsImage" src={purchase.image} alt={purchase.name}/>
                         <h2>{purchase.name}</h2>
                         <h2>${purchase.price}</h2>
