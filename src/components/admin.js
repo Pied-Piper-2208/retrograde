@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, Route, Routes, useNavigate } from "react-router-dom"
 import { createGame, deleteGame, editGame, getAllGames, getAllUsers } from "./axios"
+import '../css/admin.css'
+
 
 export const AdminPage = ({user: {isAdmin}, token}) => {
     const [allGames, setAllGames] = useState([])
@@ -68,7 +70,7 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
         }
         return (
             <div id="EditForm">
-                <button onClick={()=>postAndOptions()}>Cancel</button><br/><br/>
+                <button id="cancelButton" onClick={()=>postAndOptions()}>Cancel</button><br/><br/>
                 <form onSubmit={event=>submit(event)}>
                     <label>Name: </label>
                     <input defaultValue={game.name} maxLength="50" required /><br/><br/>
@@ -80,7 +82,7 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
                     <input defaultValue={game.image} maxLength="200" required /><br/><br/>
                     <label>Description: </label>
                     <textarea rows="4" cols="30" defaultValue={game.description} required /><br/><br/>
-                    <input type="submit" value="Update"/>
+                    <input id="editInput" type="submit" value="Update"/>
                 </form>
             </div>
         )
@@ -117,8 +119,10 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
 
         return (
             <div id="CreateForm">
-                <button onClick={()=>{postAndOptions(); setIsCreatingGame(false)}}>Cancel</button><br/><br/>
+                <button id="quickButton" onClick={()=>{postAndOptions(); setIsCreatingGame(false)}}>Cancel</button><br/><br/>
                 <form onSubmit={event=>submit(event)}>
+                <fieldset>
+                <legend id="adminLegend">Create New Game</legend>
                     <label>Name: </label>
                     <input maxLength="50" required /><br/><br/>
                     <label>Price: </label>
@@ -130,6 +134,7 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
                     <label>Description: </label>
                     <textarea rows="4" cols="30" required /><br/><br/>
                     <input type="submit" value="Create Game!"/>
+                    </fieldset>
                 </form>
             </div>
         )
@@ -144,21 +149,19 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
 
     return (
         <div id="Administrator">
-            <nav>
-                <Link to="games">Games</Link>
-                <Link to="users">Users</Link>
-            </nav>
             <Routes>
-                <Route path="*" element={<div>Welcome to the admin page!</div>}/>
+                <Route path="*" element={<div id="welcome" >Welcome to the admin page!</div>}/>
                 <Route path="games" element={
                 <div>
-                    {isCreatingGame?<NewGame />:<button onClick={()=>setIsCreatingGame(true)}>Create Game</button>}
+                    {isCreatingGame?<NewGame />:<button id="createButton" onClick={()=>setIsCreatingGame(true)}>Create Game</button>}
                     {allGames.map(game=>{
                         const option = focusedGameId===game.id ? options : "default"
                         return (
                             <div key={game.id}>
-                                <h4>{game.name}</h4>
+                                <h2></h2>
+                                <fieldset id="fieldInCart" ><legend id="titleCart">{game.name}</legend>
                                 {adminFuncs[option](game)}
+                                </fieldset>
                             </div>
                         )
                     })}
@@ -169,13 +172,25 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
                     {users.map(user=>{
                         return (
                             <div key={user.id}>
-                                {user.username}<br/>
-                                {user.emailAddress}<hr/>
+                                <h2 id="pink">Registered Users</h2>
+                                <fieldset>
+                                    <legend id="userLegend">User: {user.username}</legend>
+                                    <br/>
+                                    <div id="email">
+                                Email:
+                                {user.emailAddress}</div><br/>
+                                </fieldset>
                             </div>
                         )
                     })}
                 </div>}/>
             </Routes>
+            <nav id="linkContainer">
+                <Link class="adminLink" to="games">Edit/Create/Delete Games</Link>
+                <br></br>
+                <br></br>
+                <Link class="adminLink" to="users">See Users</Link>
+            </nav>
         </div>
     )
 }

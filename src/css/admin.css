@@ -1,0 +1,88 @@
+.adminLink  {
+        color: black;
+        font-family: 'Press Start 2P';
+        font-size: 26px;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        background-color: #2AD2C9;
+        text-shadow: none;
+    
+    }
+
+#titleCart {
+    color:#2AD2C9
+}
+
+#welcome {
+    font-size: 50px;
+    color:  #E93CAC;
+    margin-bottom: 20px;
+}
+
+#editInput {
+    background-color: #2AD2C9;
+}
+
+#quickButton {
+    background-color: #E93CAC !important;
+}
+
+#userLegend {
+    color:#2AD2C9
+}
+
+input  {
+    width: 85%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    font-size: 35px;
+    opacity: .9;
+    
+}
+
+#pink {
+    color: #E93CAC;
+}
+
+#email {
+    color: navajowhite;}
+
+#adminLegend  {
+    color:  #2AD2C9;
+}
+
+label  {
+    color:  #2AD2C9;;
+}
+
+#Administrator button {
+    font-family: 'Press Start 2P';
+    background-color: #2AD2C9;
+    font-size: 22px;
+    padding: 10px;
+    width: 45%;
+    margin: 10px;
+    border-radius: 5px;
+
+}
+
+#editForm {
+    opacity: .5;
+}
+
+#cancelButton {
+    width: 100%;
+    background-color: #E93CAC;
+}
+
+#createButton {
+    background-color: #E93CAC !important;
+    width: 80% !important; 
+}
+
+
+
