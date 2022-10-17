@@ -107,11 +107,11 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
         const submit = (event) => {
             event.preventDefault()
             const params = {
-                name: event.target[0].value,
-                price: event.target[1].value,
-                genre: event.target[2].value,
-                image: event.target[3].value,
-                description: event.target[4].value
+                name: event.target[1].value,
+                price: event.target[2].value,
+                genre: event.target[3].value,
+                image: event.target[4].value,
+                description: event.target[5].value
             }
             createGame(token,params)
             setIsCreatingGame(false)
