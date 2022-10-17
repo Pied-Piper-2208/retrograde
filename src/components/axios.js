@@ -1,5 +1,5 @@
 import axios from "axios"
-const BASE_URL = "http://localhost:4000/api"
+const BASE_URL = "https://limitless-island-59332.herokuapp.com/api"
 
 export const getAllGames = async () => {
     const response = await axios.get(`${BASE_URL}/games`)
