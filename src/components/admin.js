@@ -122,7 +122,7 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
                 <button id="quickButton" onClick={()=>{postAndOptions(); setIsCreatingGame(false)}}>Cancel</button><br/><br/>
                 <form onSubmit={event=>submit(event)}>
                 <fieldset>
-                <legend id="adminLegend">Create New Game</legend>
+                    <legend id="adminLegend">Create New Game</legend>
                     <label>Name: </label>
                     <input maxLength="50" required /><br/><br/>
                     <label>Price: </label>
@@ -134,7 +134,7 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
                     <label>Description: </label>
                     <textarea rows="4" cols="30" required /><br/><br/>
                     <input type="submit" value="Create Game!"/>
-                    </fieldset>
+                </fieldset>
                 </form>
             </div>
         )
@@ -159,37 +159,38 @@ export const AdminPage = ({user: {isAdmin}, token}) => {
                         return (
                             <div key={game.id}>
                                 <h2></h2>
-                                <fieldset id="fieldInCart" ><legend id="titleCart">{game.name}</legend>
-                                {adminFuncs[option](game)}
+                                <fieldset id="fieldInCart" >
+                                    <legend id="titleCart">{game.name}</legend>
+                                    {adminFuncs[option](game)}
                                 </fieldset>
                             </div>
                         )
                     })}
+                    <br/>
                 </div>}/>
                 <Route path="users" element={
                 <div>
-                    <hr/>
+                    <h2 id="pink">Registered Users</h2>
                     {users.map(user=>{
                         return (
                             <div key={user.id}>
-                                <h2 id="pink">Registered Users</h2>
                                 <fieldset>
-                                    <legend id="userLegend">User: {user.username}</legend>
+                                    <legend id="userLegend">User:{user.username}</legend>
                                     <br/>
                                     <div id="email">
-                                Email:
-                                {user.emailAddress}</div><br/>
+                                Email:{user.emailAddress}</div><br/>
                                 </fieldset>
+                                <br/>
                             </div>
                         )
                     })}
                 </div>}/>
             </Routes>
             <nav id="linkContainer">
-                <Link class="adminLink" to="games">Edit/Create/Delete Games</Link>
+                <Link className="adminLink" to="games">Edit/Create/Delete Games</Link>
                 <br></br>
                 <br></br>
-                <Link class="adminLink" to="users">See Users</Link>
+                <Link className="adminLink" to="users">See Users</Link>
             </nav>
         </div>
     )
