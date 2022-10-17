@@ -1,100 +1,97 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const { getUserByUsername, createUser, getUserById, getAllUsers} = require('../db');
+const express = require('express')
+const router = express.Router()
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const { getUserByUsername, createUser, getAllUsers } = require('../db')
 
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body
 
-
-router.use((req, res, next) => {
-    console.log("A request is being made to /users");
-  
-    next();
-    
-  });
-  
-  // POST /api/users/login
-router.post('/login', async (req, res, next) => {
-
-    const { username, password } = req.body;
-    console.log("username/password is ", username, password);
-    //console.log("req is ", req);
-    
-    // request must have both
-    if (!username || !password) {
-      next({
+    if (!username || !password){
+      res.send({
         name: "MissingCredentialsError",
         message: "Please supply both a username and password"
-      });
+      })
+      return
     }
 
-    const user = await getUserByUsername(username);
-    if( user ) {
     try {
-        
-        const hashedPassword = user.password;
-        console.log('hashed', hashedPassword);
-        console.log('raw', password);
-        const isValid = await bcrypt.compare(password, hashedPassword);
-        console.log('isValid', isValid);
-        if (user && isValid) {
-          // create token & return to user
-          const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET);
-          req.user = user;
-          res.send({ success: true, user: user, message: "you're logged in!", token: token });
-        } else {
-          console.log('Wrong credentials');
-          next({ 
-            name: 'IncorrectCredentialsError', 
-            message: 'Username or password is incorrect'
-          });
-        }
-      } catch(error) {
-        console.log(error);
-        next(error);
+      const user = await getUserByUsername(username);
+
+      if(!user){
+        res.send({ 
+          name: 'NoSuchUserError', 
+          message: 'There is no user by that name. Please register'
+        })
+        return
       }
-    } else {
-      console.log('No user found');
-      next({ 
-        name: 'NoSuchUserError', 
-        message: 'There is no user by that name. Please register'
-      });
-    }
-    });  
 
-    // POST /api/users/register
-router.post('/register', async (req, res, next) => {
+      const hashedPassword = user.password;
+      const isValid = await bcrypt.compare(password, hashedPassword)
 
-    const { username, password, emailAddress } = req.body;
+      if (!isValid){
+        res.send({ 
+          name: 'IncorrectCredentialsError', 
+          message: 'Username or password is incorrect'
+        })
+        return
+      }
+      
+      const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET)
+      res.send({ success: true, user, message: "you're logged in!", token })
+
+      } catch(error) {
+        throw error
+      }
+})
+
+router.post('/register', async (req, res) => {
+
+    const { username, password, emailAddress } = req.body
   
+    if (!username || !password || !emailAddress){
+      res.send({
+        name: "MissingCredentialsError",
+        message: "Please supply both a username and password"
+      })
+      return
+    }
+
     try {
-      const _user = await getUserByUsername(username);
+      const _user = await getUserByUsername(username)
       
       if(_user) {
-        next({
+        res.send({
           name: 'UserExistsError',
           message: 'A user by that username already exists'
-        });
+        })
+        return
       }
-      console.log('email', emailAddress);
-      const user = await createUser({username, password, emailAddress});
-      console.log('user', user);
+
+      const user = await createUser(req.body);
       const token = jwt.sign({id: user.id, username}, process.env.JWT_SECRET, {expiresIn: '1w'});
-      res.send({success: true, user: user, message: "Thank you for signing up", token});
-    } catch ({ name, message }) {
-        console.log('error', message);
-      next({ name, message})
-    }
-  });
-  
-router.get('/', async (req, res) => {
-    try {
-      const allUsers = await getAllUsers()
-      res.send(allUsers)
+      res.send({success: true, user, message: "Thank you for signing up", token})
     } catch (error) {
       throw error
     }
 })
 
-  module.exports = router;
+router.get('/me', async (req, res) => {
+  try {
+    res.send(req.user)
+  } catch (error) {
+    throw error
+  }
+})
+
+router.get('/', async (req, res) => {
+    try {
+      const allUsers = await getAllUsers()
+      res.send(req.user?.isAdmin ? allUsers : {})
+    } catch (error) {
+      throw error
+    }
+})
+
+module.exports = router

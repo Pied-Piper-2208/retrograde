@@ -1,12 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import '../checkout.css'
+import React from "react"
+import { Link, useNavigate } from "react-router-dom"
+import '../css/checkout.css'
+import { completeOrder, getUserCart } from "./axios"
 
 
-const Checkout = () => {
-    const handlePurchase = () => {
-        alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!");
-        window.location = '/'
+export const Checkout = ({setCart, token}) => {
+    const nav = useNavigate()
+
+    const handlePurchase = async () => {
+        alert("Your purchase is confirmed! Your order is expected to arrive in the next 5-7 business days! Sending you back to the homepage now!")
+        setCart([])
+        const dbCart = await getUserCart(token)
+        dbCart.map(async ({orderId})=> await completeOrder(orderId, token))
+        nav('/')
     }
 
     return (
@@ -127,6 +133,4 @@ const Checkout = () => {
         </div>
         </>
     )
-};
-
-export default Checkout
+}

@@ -40,7 +40,7 @@ const createTables = async () => {
             name VARCHAR(50) UNIQUE NOT NULL,
             price INTEGER NOT NULL,
             genre VARCHAR(20) NOT NULL,
-            image VARCHAR(200) UNIQUE NOT NULL,
+            image VARCHAR(200) NOT NULL,
             description TEXT NOT NULL
             );
 
