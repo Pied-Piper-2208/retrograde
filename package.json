@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "node ./db/seed/js",
     "seed:dev": "nodemon ./db/seed.js",
     "server:dev": "nodemon ./index.js",
     "front:dev": "PORT=8080 react-scripts start"
